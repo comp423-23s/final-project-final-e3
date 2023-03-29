@@ -10,6 +10,7 @@ import { AuthenticationService } from '../authentication.service';
 import { Router } from '@angular/router';
 import { Profile, ProfileService } from '../profile/profile.service';
 import { PermissionService } from '../permission.service';
+import { ReservationsService } from '../reservations.service';
 
 @Component({
   selector: 'app-navigation',
@@ -31,12 +32,14 @@ export class NavigationComponent implements OnInit, OnDestroy {
     public auth: AuthenticationService,
     public router: Router,
     private permission: PermissionService,
+    private reservationsService: ReservationsService,
     private profileService: ProfileService,
     private breakpointObserver: BreakpointObserver,
     protected navigationService: NavigationTitleService,
     protected errorDialog: MatDialog
   ) {
     this.profile$ = profileService.profile$;
+    //this.reservations$ = reservationsService.reservations$;
     this.checkinPermission$ = this.permission.check('checkin.create', 'checkin/');
     this.adminPermission$ = this.permission.check('admin.view', 'admin/')
   }
