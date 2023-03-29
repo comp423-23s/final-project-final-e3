@@ -6,5 +6,4 @@ class Room(BaseModel):
     id: int | None = None
     name: str
     max_capacity: int
-    availibility: list[Duration]
     reservations: list[Reservation]

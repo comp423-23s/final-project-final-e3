@@ -5,4 +5,6 @@ from pydantic import BaseModel
 class Reservation(BaseModel):
     subject: Room | Equipment
     user: User
-    duration: Duration
+    start: datetime
+    end: datetime
+    length: int
