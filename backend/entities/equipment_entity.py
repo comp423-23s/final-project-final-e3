@@ -10,7 +10,6 @@ class EquipmentEntity(EntityBase):
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     name: Mapped[str] = mapped_column(String)
-    max_capacity: Mapped[int] = mapped_column(Integer)
     reservations: Mapped[list['ReservationEntity']] = relationship(back_populates='equipment')
 
     @classmethod
