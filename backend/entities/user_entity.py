@@ -32,6 +32,7 @@ class UserEntity(EntityBase):
 
     roles: Mapped[list['RoleEntity']] = relationship(secondary=user_role_table, back_populates='users')
     permissions: Mapped['PermissionEntity'] = relationship(back_populates='user')
+    
     reservations: Mapped[list['ReservationEntity']] = relationship(back_populates='users')
 
     @classmethod

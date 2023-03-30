@@ -1,14 +1,16 @@
-from fastapi import APIRouter
-from ..models import Reservation, ReservationRequest
+from fastapi import APIRouter, Depends
+from ..services import ReservationService
+from ..models import ReservationRequest, Reservation
 
 """
 POST for a new reservation:
-"/reserve/room/name=<Room_name>", payload=Reservation
+"/api/reserve/room/{Room_name}", payload=Reservation
 """
 
 api = APIRouter(prefix="/api/reserve")
 
 @api.post("/room/{name}")
-def new_reservation(request: ReservationRequest) -> Reservation:
-    pass
+def new_reservation(request: ReservationRequest, room_name: str, reservation_svc: ReservationService = Depends()) -> str:
+    """Creates a new reservation for a specific room_name."""
+    return "OK"
 
