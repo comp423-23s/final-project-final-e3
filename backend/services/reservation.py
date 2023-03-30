@@ -18,7 +18,7 @@ class ReservationService:
     def add(self, reserv_request: ReservationRequest, room_name: str) -> None:
         """Add reservation to database. """
         pass
-    
-    def remove(self, subject: User, id: int, userId: int):
+
+    def remove(self, reservation_id: str, id: int, userId: int):
         """Remove reservation"""
         pass
