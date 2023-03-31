@@ -61,3 +61,12 @@ with Session(engine) as session:
         session.add(entity)
     session.execute(text(f'ALTER SEQUENCE permission_id_seq RESTART WITH {len(permissions.pairs) + 1}'))
     session.commit()
+
+# Add Rooms
+with Session(engine) as session:
+    from ..entities import RoomEntity
+    from .dev_data import rooms
+    to_entity = entities.RoomEntity.from_model
+    session.add_all([to_entity(model) for model in rooms.models])
+    session.execute(text(f'ALTER SEQUENCE {entities.RoomEntity.__table__}_id_seq RESTART WITH {len(rooms.models) + 1}'))
+    session.commit()
