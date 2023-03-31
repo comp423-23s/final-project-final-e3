@@ -16,24 +16,15 @@ class ReservationService:
 
     def list(self, room_name: str) -> list[Reservation] | None:
         """Lists all reservations for a room."""
-        query = select(RoomEntity).where(name == room_name)
-        room_entity: RoomEntity =  self._session.scalar(query)
-        if room_entity is None:
-            return None
-        else:
-            reservation_entities = room_entity.reservations
-            return [reservation_entity.to_model() for reservation_entity in reservation_entities]
+        statement = select(ReservationEntity)
+        reservation_entities = self._session.execute(statement).scalars()
+        return [reservation_entity.to_model() for reservation_entity in reservation_entities 
+                if reservation_entity.subject_name == room_name]
         
 
     def add(self, reservation: Reservation, room_name: str) -> None:
         """Add reservation to database. """
-        query = select(RoomEntity).where(name == room_name)
-        room_entity: RoomEntity = self._session.scalar(query)
-        reservation_entity = reservation.from_model()
-        if room_entity is not None:
-            reservation_entity.subject = room_entity
-            self._session.add(reservation_entity)
-            self._session.commit()
+        pass
 
 
     def remove(self, reservation_id: str, id: int, userId: int):
