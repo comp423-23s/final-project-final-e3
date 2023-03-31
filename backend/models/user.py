@@ -2,7 +2,6 @@
 
 from pydantic import BaseModel
 
-
 __authors__ = ["Kris Jordan"]
 __copyright__ = "Copyright 2023"
 __license__ = "MIT"
@@ -17,6 +16,7 @@ class User(BaseModel):
     email: str = ""
     pronouns: str = ""
     permissions: list['Permission'] = []
+    reservations: list['Reservation'] = []
 
 
 class NewUser(BaseModel):

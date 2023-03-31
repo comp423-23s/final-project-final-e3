@@ -18,12 +18,12 @@ class RoomEntity(EntityBase):
         return cls(
             id=model.id,
             name=model.name,
-            max_capacity=model.max_capacity
+            max_capacity=model.max_capacity,
         )
 
     def to_model(self) -> Room:
         return Room(
             id=self.id,
             name=self.name,
-            max_capacity=self.max_capacity
+            max_capacity=self.max_capacity,
         )

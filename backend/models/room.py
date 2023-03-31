@@ -7,4 +7,4 @@ class Room(BaseModel):
     id: int | None = None
     name: str
     max_capacity: int
-    reservations: list[Reservation]
+    reservations: list['Reservation'] = []

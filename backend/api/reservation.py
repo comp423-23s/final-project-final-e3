@@ -10,7 +10,7 @@ POST for a new reservation:
 api = APIRouter(prefix="/api/reserve")
 
 @api.post("/room/{name}")
-def new_reservation(request: ReservationRequest, room_name: str, reservation_svc: ReservationService = Depends()) -> str:
+def new_reservation(reservation: Reservation, room_name: str, reservation_svc: ReservationService = Depends()) -> str:
     """Creates a new reservation for a specific room_name."""
-    return "OK"
+    pass
 

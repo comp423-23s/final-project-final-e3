@@ -6,4 +6,4 @@ from . import Reservation
 class Equipment(BaseModel):
     id: int | None = None
     name: str
-    reservations: list[Reservation]
+    reservations: list['Reservation'] = []
