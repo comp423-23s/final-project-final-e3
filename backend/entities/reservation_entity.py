@@ -3,10 +3,10 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from typing import Self
 from .entity_base import EntityBase
 from ..models import Reservation
-
+from . import RoomEntity
 
 class ReservationEntity(EntityBase):
-    __tablename__ = "reservation"
+    __tablename__ = 'reservation'
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     room_name: Mapped[str] = mapped_column(String)
@@ -14,7 +14,6 @@ class ReservationEntity(EntityBase):
     start: Mapped[str] = mapped_column(String)
     end: Mapped[str] = mapped_column(String)
     length: Mapped[int] = mapped_column(Integer)
-
 
     @classmethod
     def from_model(cls, model: Reservation) -> Self:

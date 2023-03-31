@@ -4,14 +4,12 @@ from typing import Self
 from .entity_base import EntityBase
 from ..models import Room
 
-
 class RoomEntity(EntityBase):
-    __tablename__ = "room"
+    __tablename__ = 'room'
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     name: Mapped[str] = mapped_column(String)
     max_capacity: Mapped[int] = mapped_column(Integer)
-    reservations: Mapped[list['ReservationEntity']] = relationship(back_populates='room')
 
     @classmethod
     def from_model(cls, model: Room) -> Self:

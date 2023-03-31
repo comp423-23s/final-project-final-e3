@@ -16,7 +16,6 @@ class User(BaseModel):
     email: str = ""
     pronouns: str = ""
     permissions: list['Permission'] = []
-    reservations: list['Reservation'] = []
 
 
 class NewUser(BaseModel):
