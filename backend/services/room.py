@@ -15,8 +15,8 @@ class RoomService:
 
     def list(self) -> list[Room]:
         """List all rooms"""
-        statement = select(RoomEntity)
-        room_entities = self._session.execute(statement).scalar()
+        statement = select(RoomEntity).order_by(RoomEntity.name)
+        room_entities = self._session.execute(statement).scalars()
         return [room_entity.to_model() for room_entity in room_entities]
 
 
