@@ -1,0 +1,1 @@
+# Treat script/ as a package

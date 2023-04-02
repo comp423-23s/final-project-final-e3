@@ -1,0 +1,26 @@
+<div class="reservation-table-box">
+    <h1>Available Rooms</h1>
+    <table name="table" id="table">
+        <colgroup>
+            <col style="width:500px">
+            <col style="width:500px">
+          </colgroup>  
+
+          <thead>
+            <td>Room ID</td>
+            <td>Name</td>
+            <td>Max Capacity</td>
+          </thead>
+
+        <tbody>
+
+          <tr *ngFor="let room of rooms$ | async">
+            <td>{{ room.id }}</td>
+            <td>{{ room.name}}</td>
+            <td>{{ room.max_capacity }}</td>
+        </tr>
+ 
+        </tbody>
+
+  </table>
+</div>
