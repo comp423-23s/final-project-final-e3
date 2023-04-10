@@ -1,5 +1,5 @@
-from sqlalchemy import Integer, String, ForeignKey
-from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy import Integer, String
+from sqlalchemy.orm import Mapped, mapped_column
 from typing import Self
 from .entity_base import EntityBase
 from ..models import Room

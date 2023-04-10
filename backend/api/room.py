@@ -11,5 +11,9 @@ def list(room_svc: RoomService = Depends()):
 
 
 @api.post("", tags=['Room'])
-def add(id: int, name: str, max_capacity: int, room_svc: RoomService = Depends()) -> None:
-    return room_svc.add(id, name, max_capacity)
+def add(room: Room, room_svc: RoomService = Depends()) -> None:
+    return room_svc.add(room)
+
+@api.delete("/{room_name}", tags=["Room"])
+def delete(room_name: str, room_svc: RoomService = Depends()) -> None:
+    return room_svc.delete(room_name)

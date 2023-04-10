@@ -3,6 +3,6 @@
 from pydantic import BaseModel
 
 class Room(BaseModel):
-    id: int | None = None
+    id: int
     name: str
     max_capacity: int
