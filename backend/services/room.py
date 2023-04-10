@@ -31,3 +31,4 @@ class RoomService:
         """Delete a room specified by name from database"""
         room_to_delete = self._session.query(RoomEntity).filter_by(name=room_name).one()
         self._session.delete(room_to_delete)
+        self._session.commit()
