@@ -13,13 +13,12 @@ class ReservationService:
     def __init__(self, session: Session = Depends(db_session)):
         self._session = session
 
-
+        
     def list(self, subject_name: str) -> list[Reservation] | None:
         """Lists all reservations for a room."""
         statement = select(ReservationEntity)
         reservation_entities = self._session.execute(statement).scalars()
-        return [reservation_entity.to_model() for reservation_entity in reservation_entities 
-                if reservation_entity.subject_name == subject_name]
+        return [reservation_entity.to_model() for reservation_entity in reservation_entities if reservation_entity.subject_name == subject_name]
         
 
     def add(self, reservation: Reservation) -> None:

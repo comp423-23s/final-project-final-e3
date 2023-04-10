@@ -13,4 +13,3 @@ def list(subject_name: str, reserve_svc: ReservationService = Depends()):
 @api.post("", tags=['Reservation'])
 def add(reservation: Reservation, reserve_svc: ReservationService = Depends()) -> None:
     return reserve_svc.add(reservation)
-
