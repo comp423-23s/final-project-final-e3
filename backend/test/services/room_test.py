@@ -2,11 +2,12 @@ import pytest
 
 from sqlalchemy.orm import Session
 from ...models import Room
-from ...entities import room_entity
-from ...services import room_service
+from ...entities import RoomEntity
+from ...services import RoomService
 
 # Mock models
 room1 = Room(id=1, name="A1", max_capacity=3)
+room2 = Room(id=2, name="A2", max_capacity=5)
 
 @pytest.fixture(autouse=True)
 def setup(test_session: Session):
@@ -17,12 +18,13 @@ def setup(test_session: Session):
 def room(test_session: Session):
     return RoomService(test_session)
 
-def test_list_room(room_service: RoomService):
-    rooms = room_serivice.list()
-    assert rooms is list[Room]
+def test_list_room(room: RoomService):
+    room_service = room
+    rooms = room_service.list()
     assert room1 in rooms
 
-def test_add_room(room_service: RoomService):
+def test_add_room(room: RoomService):
+    room_service = room
     room_service.add(2, "A2", 5)
-    rooms = room_serivice.list()
+    rooms = room_service.list()
     assert len(rooms) == 2

@@ -10,7 +10,7 @@ def list(subject_name: str, reserve_svc: ReservationService = Depends()):
     return reserve_svc.list(subject_name)
 
 
-@api.post("", tags=['Room'])
-def add(id: int, name: str, max_capacity: int, room_svc: ReservationService = Depends()) -> None:
-    # TODO 
-    return 
+@api.post("", tags=['Reservation'])
+def add(reservation: Reservation, reserve_svc: ReservationService = Depends()) -> None:
+    return reserve_svc.add(reservation)
+

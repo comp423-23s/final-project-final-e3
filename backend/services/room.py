@@ -20,9 +20,15 @@ class RoomService:
         return [room_entity.to_model() for room_entity in room_entities]
 
 
-    def add(self, id: int, name: str, max_capacity: int) -> None:
+    def add(self, room: Room) -> None:
         """Add room into database"""
-        new_room = Room(id=id, name=name, max_capacity=max_capacity)
-        new_room_entity = RoomEntity.from_model(new_room)
-        self._session.add(new_room_entity)
+        room_entity = RoomEntity.from_model(room)
+        self._session.add(room_entity)
+        self._session.commit()
+
+
+    def delete(self, room_name: str) -> None:
+        """Delete a room specified by name from database"""
+        room_to_delete = self._session.query(RoomEntity).filter_by(name=room_name).one()
+        self._session.delete(room_to_delete)
         self._session.commit()
