@@ -5,12 +5,11 @@ from ..services import RoomService
 api = APIRouter(prefix="/api/room")
 
 
-@api.get("", response_model=list[Room], tags=['Room'])
+@api.get("", response_model=list[Room], tags=["Room"])
 def list(room_svc: RoomService = Depends()):
     return room_svc.list()
 
-
-@api.post("", tags=['Room'])
+@api.post("", tags=["Room"])
 def add(room: Room, room_svc: RoomService = Depends()) -> None:
     return room_svc.add(room)
 
