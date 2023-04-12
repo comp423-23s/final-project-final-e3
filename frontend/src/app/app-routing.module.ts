@@ -5,12 +5,15 @@ import { GateComponent } from './gate/gate.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileEditorComponent } from './profile/profile-editor/profile-editor.component';
 import { ReservationsComponent } from './reservations/reservations.component';
-
+import { TimesComponent } from './times/times.component';
+import { ManagementComponent } from './management/management.component';
 
 const routes: Routes = [
   HomeComponent.Route,
   ProfileEditorComponent.Route,
   ReservationsComponent.Route,
+  TimesComponent.Route,
+  ManagementComponent.Route,
   GateComponent.Route,
   { path: 'admin', title: 'Admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
 ];

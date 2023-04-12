@@ -1,5 +1,5 @@
 <div class="reservation-table-box">
-    <h1>Available Rooms</h1>
+    <h1>Manage Rooms</h1>
 
     <table name="table" id="table">
         <colgroup>
@@ -20,10 +20,12 @@
             <td>{{ room.id }}</td>
             <td>{{ room.name }}</td>
             <td>{{ room.max_capacity }}</td>
-            <button title = "check_time"><a mat-list-item routerLink="/times">Times</a></button>
+            <td><button class="button" type="delete" (click)="onClick(room.name)">Delete</button></td>
         </tr>
  
         </tbody>
 
   </table>
+
+  <button>Add New Room</button>
 </div>
