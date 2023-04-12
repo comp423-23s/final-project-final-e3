@@ -34,7 +34,7 @@ export class ManagementComponent {
   }
 
   onSuccess(room: Room): void {
-    window.alert('Room ${room.name} has been deleted');
+    window.alert(`Room ${room.name} has been deleted.`);
     window.location.reload();
   }
 }
