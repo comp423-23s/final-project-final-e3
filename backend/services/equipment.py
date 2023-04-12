@@ -1,4 +1,5 @@
 from ..database import db_session
+from sqlalchemy import select, or_, func
 from sqlalchemy.orm import Session
 from fastapi import Depends
 from ..models import Equipment
