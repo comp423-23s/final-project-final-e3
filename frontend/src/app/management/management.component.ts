@@ -20,12 +20,15 @@ export class ManagementComponent {
   };
 
   public rooms$: Observable<Room[]>;
+  public rName: String;
 
   constructor(private reservationService: ReservationsService, private managementService: ManagementService){
     this.rooms$ = reservationService.list_of_rooms();
+    this.rName = "";
   }
 
   onClick(roomName: string): void {
+    this.rName = roomName;
     this.managementService
           .deleteRoom(roomName)
           .subscribe({
@@ -34,7 +37,7 @@ export class ManagementComponent {
   }
 
   onSuccess(room: Room): void {
-    window.alert(`Room ${room.name} has been deleted.`);
+    window.alert(`Room ${this.rName} has been deleted.`);
     window.location.reload();
   }
 }

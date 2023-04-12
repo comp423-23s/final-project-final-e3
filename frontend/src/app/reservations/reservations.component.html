@@ -8,8 +8,7 @@
           </colgroup>  
 
           <thead>
-            <td>Room ID</td>
-            <td>Name</td>
+            <td>Room Name</td>
             <td>Max_Capacity</td>
             <td>Availability</td>
           </thead>
@@ -17,7 +16,6 @@
         <tbody>
 
           <tr *ngFor="let room of rooms$ | async">
-            <td>{{ room.id }}</td>
             <td>{{ room.name }}</td>
             <td>{{ room.max_capacity }}</td>
             <button title = "check_time"><a mat-list-item routerLink="/times">Times</a></button>

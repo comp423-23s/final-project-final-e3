@@ -1,0 +1,29 @@
+.reservation-table-box{
+
+    border:1px solid #000;
+    background-color:#545454;
+    padding: 50px;
+
+}
+
+.delete-button {
+    background-color: #b70000;
+    border: black;
+    color: white;
+    padding: 10px 22px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.add-button {
+    background-color: #52bc00;
+    border: black;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+}

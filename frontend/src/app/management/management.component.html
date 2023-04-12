@@ -8,24 +8,23 @@
           </colgroup>  
 
           <thead>
-            <td>Room ID</td>
-            <td>Name</td>
+            <td>Room Name</td>
             <td>Max_Capacity</td>
-            <td>Availability</td>
+            <td>Manage</td>
           </thead>
 
         <tbody>
 
           <tr *ngFor="let room of rooms$ | async">
-            <td>{{ room.id }}</td>
             <td>{{ room.name }}</td>
             <td>{{ room.max_capacity }}</td>
-            <td><button class="button" type="submit" (click)="onClick(room.name)">Delete</button></td>
+            <td><button class="delete-button" type="submit" (click)="onClick(room.name)">Delete</button></td>
         </tr>
  
         </tbody>
 
   </table>
 
-  <button>Add New Room</button>
 </div>
+
+<button class="add-button"><h4>Add New Room</h4></button>

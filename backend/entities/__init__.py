@@ -20,7 +20,8 @@ from .permission_entity import PermissionEntity
 from .user_role_entity import user_role_table
 from .room_entity import RoomEntity
 from .reservation_entity import ReservationEntity
+from .equipment_entity import EquipmentEntity
 
-__authors__ = ["Kris Jordan"]
+__authors__ = ["Kris Jrdan"]
 __copyright__ = "Copyright 2023"
 __license__ = "MIT"

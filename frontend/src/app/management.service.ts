@@ -12,6 +12,6 @@ export class ManagementService {
 
   deleteRoom(roomName: string): Observable<Room>
   {
-    return this.http.delete<Room>(`/api/room/A1`)
+    return this.http.delete<Room>(`/api/room/${roomName}`)
   }
 }

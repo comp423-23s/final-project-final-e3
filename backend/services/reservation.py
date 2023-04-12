@@ -14,22 +14,32 @@ class ReservationService:
         self._session = session
 
         
-    def list(self, subject_name: str) -> list[Reservation] | None:
+    def list(self, subject_name_or_pid: str | int) -> list[Reservation] | None:
         """Lists all reservations for a room."""
+        is_PID = subject_name_or_pid.isdigit()
+
         statement = select(ReservationEntity)
         reservation_entities = self._session.execute(statement).scalars()
-        return [reservation_entity.to_model() for reservation_entity in reservation_entities if reservation_entity.subject_name == subject_name]
+        if not is_PID:
+            return [reservation_entity.to_model() for reservation_entity in reservation_entities if reservation_entity.subject_name == subject_name_or_pid]
         
+        return [reservation_entity.to_model() for reservation_entity in reservation_entities if reservation_entity.pid == int(subject_name_or_pid)] 
+
+    def list_all(self):
+        """Lists all reservations in database."""
+        statement = select(ReservationEntity)
+        reservation_entities = self._session.execute(statement).scalars()
+        return [reservation_entity.to_model() for reservation_entity in reservation_entities] 
 
     def add(self, reservation: Reservation) -> None:
         """Add reservation to database. """
-        reservation_entity = reservation.to_model()
+        reservation_entity = ReservationEntity.from_model(reservation)
         self._session.add(reservation_entity)
         self._session.commit()
 
 
-    def delete(self, user_pid: int, name: str) -> None:
+    def delete(self, id: str) -> None:
         """Remove reservation from database"""
-        entities = self._session.query(ReservationEntity).filter_by(pid=user_pid, subject_name=name).all()
-        self._session.delete(entities)
+        reservation_to_delete = self._session.query(ReservationEntity).filter_by(identifier_id=id).one()
+        self._session.delete(reservation_to_delete)
         self._session.commit()
