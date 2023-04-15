@@ -36,6 +36,7 @@ import { ProfileEditorComponent } from './profile/profile-editor/profile-editor.
 import { ReservationsComponent } from './reservations/reservations.component';
 import { TimesComponent } from './times/times.component';
 import { ManagementComponent } from './management/management.component';
+import { AddRoomComponent } from './add-room/add-room.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { ManagementComponent } from './management/management.component';
     ProfileEditorComponent,
     ReservationsComponent,
     TimesComponent,
-    ManagementComponent
+    ManagementComponent,
+    AddRoomComponent
   ],
   imports: [
     BrowserModule,
