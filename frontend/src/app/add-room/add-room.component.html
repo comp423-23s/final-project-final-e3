@@ -1,5 +1,5 @@
 <div>
-    <form>
+    <form [formGroup] = "newRoomForm" (ngSubmit) = "onSubmit()">
       <mat-card>
           <mat-card-header>
               <mat-card-title>Add Rooms</mat-card-title>
@@ -91,7 +91,7 @@
                 </mat-form-field>
             </p>
             <p>
-                <button>Add Room</button>
+                <button type="submit">Add Room</button>
             </p>
         </mat-card-content>
     
