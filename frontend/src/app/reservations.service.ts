@@ -4,11 +4,15 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface Room {
-  id: number
   name: string
+  // availability: myMap[string: (arg0: string, arg1: string)]
   max_capacity: number
 }
 
+let myMap = new Map<string,string> ([
+  ["key1", "value1"],
+  ["key2", "value2"]
+]);
 
 @Injectable({
   providedIn: 'root'

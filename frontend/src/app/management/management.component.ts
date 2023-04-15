@@ -5,6 +5,7 @@ import { isAuthenticated } from '../gate/gate.guard';
 import { ReservationsService, Room } from '../reservations.service';
 import { ReservationsComponent } from '../reservations/reservations.component';
 import { ManagementService } from '../management.service';
+import { Form, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-management',
@@ -22,7 +23,12 @@ export class ManagementComponent {
   public rooms$: Observable<Room[]>;
   public rName: String;
 
-  constructor(private reservationService: ReservationsService, private managementService: ManagementService){
+  public newRoomForm = this.formBuilder.group({
+    room_name: '',
+    room_capacity: '',
+  });
+
+  constructor(private reservationService: ReservationsService, private managementService: ManagementService, protected formBuilder: FormBuilder){
     this.rooms$ = reservationService.list_of_rooms();
     this.rName = "";
   }
