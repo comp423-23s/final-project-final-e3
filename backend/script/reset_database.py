@@ -71,6 +71,15 @@ with Session(engine) as session:
     #session.execute(text(f'ALTER SEQUENCE {entities.RoomEntity.__table__}_id_seq RESTART WITH {len(rooms.models) + 1}'))
     session.commit()
 
+# Add Equipments
+with Session(engine) as session:
+    from ..entities import EquipmentEntity
+    from .dev_data import equipments
+    to_entity = entities.EquipmentEntity.from_model
+    session.add_all([to_entity(model) for model in equipments.models])
+    #session.execute(text(f'ALTER SEQUENCE {entities.RoomEntity.__table__}_id_seq RESTART WITH {len(rooms.models) + 1}'))
+    session.commit()
+
 # Add Reservations
 with Session(engine) as session:
     from ..entities import ReservationEntity

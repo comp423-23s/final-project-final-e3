@@ -3,7 +3,7 @@ from sqlalchemy import select, or_, func
 from sqlalchemy.orm import Session, joinedload
 from ..database import db_session
 from ..models import Reservation
-from ..entities import RoomEntity, ReservationEntity
+from ..entities import RoomEntity, ReservationEntity, UserEntity, RoleEntity
 
 
 class ReservationService:
@@ -26,11 +26,19 @@ class ReservationService:
         return [reservation_entity.to_model() for reservation_entity in reservation_entities if reservation_entity.pid == int(subject_name_or_pid)] 
 
 
-    def list_all(self):
-        """Lists all reservations in database."""
-        statement = select(ReservationEntity)
-        reservation_entities = self._session.execute(statement).scalars()
-        return [reservation_entity.to_model() for reservation_entity in reservation_entities] 
+    def list_all(self, user_pid: int):
+        """Only staff can list all reservations in database."""
+        staff_entity = self._session.query(UserEntity).filter_by(pid=user_pid).one()
+        if staff_entity is None:
+            return "User not found"
+        role_entities = staff_entity.roles
+        roles = [role_entity.to_model() for role_entity in role_entities]
+        for role in roles:
+            if role.name == "Staff":
+                statement = select(ReservationEntity)
+                reservation_entities = self._session.execute(statement).scalars()
+                return [reservation_entity.to_model() for reservation_entity in reservation_entities] 
+        return "You cannot list all reservations"
 
 
     def add(self, reservation: Reservation) -> None:

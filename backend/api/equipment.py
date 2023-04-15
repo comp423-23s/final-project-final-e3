@@ -10,9 +10,9 @@ def list(equipment_svc: EquipmentService = Depends()):
     return equipment_svc.list()
 
 @api.post("", tags=["Equipment"])
-def add(equipment: Equipment, equipment_svc: EquipmentService = Depends()) -> None:
-    return equipment_svc.add(equipment)
+def add(user_pid: int, equipment: Equipment, equipment_svc: EquipmentService = Depends()) -> None:
+    return equipment_svc.add(user_pid, equipment)
 
 @api.delete("/{equipment_name}", tags=["Equipment"])
-def delete(equipment_name: str, equipment_svc: EquipmentService = Depends()) -> None:
-    return equipment_svc.delete(equipment_name)
+def delete(user_pid:int, equipment_name: str, equipment_svc: EquipmentService = Depends()) -> None:
+    return equipment_svc.delete(user_pid, equipment_name)
