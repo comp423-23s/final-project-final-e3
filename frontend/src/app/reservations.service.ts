@@ -5,14 +5,17 @@ import { Observable } from 'rxjs';
 
 export interface Room {
   name: string
-  // availability: myMap[string: (arg0: string, arg1: string, arg2: string)]
-  max_capacity: number
+  max_capacity: string
+  monday: string[] | null
+  tuesday: string[] | null
+  wednesday: string[] | null
+  thursday: string[] | null
+  friday: string[] | null
+  saturday: string[] | null
+  sunday: string[] | null
+  time_interval: string | null
 }
 
-let myMap = new Map<string,string> ([
-  ["key1", "value1"],
-  ["key2", "value2"]
-]);
 
 @Injectable({
   providedIn: 'root'

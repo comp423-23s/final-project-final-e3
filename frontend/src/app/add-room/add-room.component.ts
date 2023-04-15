@@ -1,71 +1,113 @@
-import { Component } from '@angular/core';
-import { Route } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Route } from '@angular/router';
 import { Observable } from 'rxjs';
 import { isAuthenticated } from '../gate/gate.guard';
 import { ReservationsService, Room } from '../reservations.service';
 import { ReservationsComponent } from '../reservations/reservations.component';
 import { ManagementService } from '../management.service';
-import { Form, FormBuilder } from '@angular/forms';
+import { Form, FormBuilder, Validators } from '@angular/forms';
+import { AddRoomService } from '../add-room.service';
 
 @Component({
   selector: 'app-add-room',
   templateUrl: './add-room.component.html',
   styleUrls: ['./add-room.component.css']
 })
-export class AddRoomComponent {
+export class AddRoomComponent implements OnInit{
   public static Route: Route = {
     path: 'add-room',
     component: AddRoomComponent, 
     title: 'add-room',  
   };
 
-  // public newRoom: Room;
+  public newRoom: Room;
 
-  // public newRoomForm = this.formBuilder.group({
-  //   room_name: '',
-  //   room_capacity: '',
+  public newRoomForm = this.formBuilder.group({
+    room_name: '',
+    room_capacity: '',
+    monday_start: '',
+    monday_end: '',
+    tuesday_start: '',
+    tuesday_end: '',
+    wednesday_start: '',
+    wednesday_end: '',
+    thursday_start: '',
+    thursday_end: '',
+    friday_start: '',
+    friday_end: '',
+    saturday_start: '',
+    saturday_end: '',
+    sunday_start: '',
+    munday_end: '',
+    time_interval: '',
+  });
 
-  // });
+  constructor(route: ActivatedRoute, protected formBuilder: FormBuilder, protected addRoomService: AddRoomService) {
+    const form = this.newRoomForm;
+    form.get('room_name')?.addValidators(Validators.required);
+    form.get('room_capacity')?.addValidators(Validators.required);
+    form.get('monday_start')?.addValidators(Validators.required);
+    form.get('monday_end')?.addValidators(Validators.required);
+    form.get('tuesday_start')?.addValidators(Validators.required);
+    form.get('tuesday_end')?.addValidators(Validators.required);
+    form.get('wednesday_start')?.addValidators(Validators.required);
+    form.get('wednesday_end')?.addValidators(Validators.required);
+    form.get('thursay_start')?.addValidators(Validators.required);
+    form.get('thurday_end')?.addValidators(Validators.required);
+    form.get('friday_start')?.addValidators(Validators.required);
+    form.get('friday_end')?.addValidators(Validators.required);
+    form.get('saturday_start')?.addValidators(Validators.required);
+    form.get('saturday_end')?.addValidators(Validators.required);
+    form.get('sunday_start')?.addValidators(Validators.required);
+    form.get('sunday_end')?.addValidators(Validators.required);
+    form.get('time_interval')?.addValidators(Validators.required);
+    
 
-  // constructor(route: ActivatedRoute, protected formBuilder: FormBuilder, protected profileService: ProfileService, protected snackBar: MatSnackBar) {
-  //   const form = this.profileForm;
-  //   form.get('room_name')?.addValidators(Validators.required);
-  //   form.get('room_capacity')?.addValidators(Validators.required);
-  //   form.get('email')?.addValidators([Validators.required, Validators.email, Validators.pattern(/unc\.edu$/)]);
-  //   form.get('pronouns')?.addValidators(Validators.required);
+    const data = route.snapshot.data as { room: Room };
+    this.newRoom = data.room;
+  }
 
-  //   const data = route.snapshot.data as { profile: Profile };
-  //   this.newRoom = data.profile;
-  // }
+  ngOnInit(): void {
+    let newRoom = this.newRoom;
 
-  // ngOnInit(): void {
-  //   let newRoom = this.newRoom;
+    // this.newRoomForm.setValue({
+    //   room_name: newRoom.name,
+    //   room_capacity: newRoom.max_capacity,
+    //   // monday_start: newRoom.monday,
+    //   // monday_end: '',
+    //   // tuesday_start: '',
+    //   // tuesday_end: '',
+    //   // wednesday_start: '',
+    //   // wednesday_end: '',
+    //   // thursday_start: '',
+    //   // thursday_end: '',
+    //   // friday_start: '',
+    //   // friday_end: '',
+    //   // saturday_start: '',
+    //   // saturday_end: '',
+    //   // sunday_start: '',
+    //   // munday_end: '',
+    //   // time_interval: '',
+    // });
+  }
 
-  //   this.newRoom.setValue({
-  //     first_name: profile.first_name,
-  //     last_name: profile.last_name,
-  //     email: profile.email,
-  //     pronouns: profile.pronouns
-  //   });
-  // }
+  onSubmit(): void {
+    if (this.newRoomForm.valid) {
+      // Object.assign(this.newRoom, this.newRoom.value)
+      this.addRoomService.put(this.newRoom).subscribe(
+        {
+          next: (room) => this.onSuccess(room),
+          error: (err) => this.onError(err)
+        } 
+      );
+    }
+  }
 
-  // onSubmit(): void {
-  //   if (this.newRoomForm.valid) {
-  //     Object.assign(this.newRoom, this.newRoom.value)
-  //     this.profileService.put(this.newRoom).subscribe(
-  //       {
-  //         next: (room) => this.onSuccess(room),
-  //         error: (err) => this.onError(err)
-  //       } 
-  //     );
-  //   }
-  // }
+  private onSuccess(room: Room) {
+    
+  }
 
-  // private onSuccess(room: Room) {
-  //   this.snackBar.open("Profile Saved", "", { duration: 2000 })
-  // }
-
-  // private onError(err: any) {
-  //   console.error("How to handle this?");
-  // }
+  private onError(err: any) {
+    console.error("How to handle this?");
+  }
 }
