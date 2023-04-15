@@ -5,8 +5,8 @@ from ..services import ReservationService
 api = APIRouter(prefix="/api/reserve")
 
 @api.get("", response_model=list[Reservation], tags=['Reservation'])
-def list_all(reserve_svc: ReservationService = Depends()):
-    return reserve_svc.list_all()
+def list_all(user_pid:int, reserve_svc: ReservationService = Depends()):
+    return reserve_svc.list_all(user_pid)
 
 @api.get("/{subject_name_or_pid}", response_model=list[Reservation], tags=['Reservation'])
 def list(subject_name_or_pid: str | int, reserve_svc: ReservationService = Depends()):

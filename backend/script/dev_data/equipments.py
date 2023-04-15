@@ -1,6 +1,6 @@
-"""Sample rooms"""
+"""Sample equipments"""
 
-from ...models import Room
+from ...models import Equipment
 
 availability1 = {
     "Monday": ["08:00", "15:00", "1"],
@@ -12,10 +12,10 @@ availability2 = {
     "Tuesday": ["08:00", "17:00", "1"]
 }
 
-room1 = Room(name="A1", max_capacity=3, availability=availability1)
-room2 = Room(name="A2", max_capacity=5, availability=availability2)
+equipment1 = Equipment(name="E1", availability=availability1)
+equipment2 = Equipment(name="E2", availability=availability2)
 
 models = [
-    room1, 
-    room2
+    equipment1,
+    equipment2
 ]
