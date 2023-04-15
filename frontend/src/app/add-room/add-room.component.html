@@ -4,19 +4,61 @@
           <mat-card-header>
               <mat-card-title>Add Rooms</mat-card-title>
           </mat-card-header>
-    
+          
           <mat-card-content>
+            <p>
+                <mat-form-field>
+                    <mat-label label for="room_name">Room Name</mat-label>
+                    <input id="room_name" type="text" formControlName="room_name">
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field>
+                    <mat-label for="room_capicity">Room Capacity</mat-label>
+                    <input id="room_capacity" type="number" formControlName="room_capacity">
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field>
+                    <mat-label for="monday_start_time">Monday</mat-label>
+                    <input matInput type="time" placeholder="start time">
+                    
+                </mat-form-field>
+                
+                <mat-form-field>
+                    <input matInput type="time" placeholder="end time">
+                </mat-form-field>
+            </p>
+            
             <mat-form-field>
-                <mat-label label for="room_name">Room Name</mat-label>
-                <input id="room_name" type="text" formControlName="room_name">
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label for="room_capicity">Room Capacity</mat-label>
-                <input id="room_capacity" type="number" formControlName="room_capacity">
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label for="monday_time">Monday</mat-label>
+                <mat-label for="monday_start_time">Tuesday</mat-label>
                 <input matInput type="time" placeholder="start time">
+                <input matInput type="time" placeholder="end time">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label for="monday_start_time">Wednesday</mat-label>
+                <input matInput type="time" placeholder="start time">
+                <input matInput type="time" placeholder="end time">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label for="monday_start_time">Thrusday</mat-label>
+                <input matInput type="time" placeholder="start time">
+                <input matInput type="time" placeholder="end time">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label for="monday_start_time">Friday</mat-label>
+                <input matInput type="time" placeholder="start time">
+                <input matInput type="time" placeholder="end time">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label for="monday_start_time">Saturday</mat-label>
+                <input matInput type="time" placeholder="start time">
+                <input matInput type="time" placeholder="end time">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label for="monday_start_time">Sunday</mat-label>
+                <input matInput type="time" placeholder="start time">
+                <input matInput type="time" placeholder="end time">
             </mat-form-field>
 
         </mat-card-content>

@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import 'jasmine'
 import { AddRoomComponent } from './add-room.component';
 
 describe('AddRoomComponent', () => {

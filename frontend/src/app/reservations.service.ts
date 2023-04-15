@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 export interface Room {
   name: string
-  // availability: myMap[string: (arg0: string, arg1: string)]
+  // availability: myMap[string: (arg0: string, arg1: string, arg2: string)]
   max_capacity: number
 }
 
