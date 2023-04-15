@@ -25,11 +25,13 @@ class ReservationService:
         
         return [reservation_entity.to_model() for reservation_entity in reservation_entities if reservation_entity.pid == int(subject_name_or_pid)] 
 
+
     def list_all(self):
         """Lists all reservations in database."""
         statement = select(ReservationEntity)
         reservation_entities = self._session.execute(statement).scalars()
         return [reservation_entity.to_model() for reservation_entity in reservation_entities] 
+
 
     def add(self, reservation: Reservation) -> None:
         """Add reservation to database. """
