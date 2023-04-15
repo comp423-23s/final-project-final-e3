@@ -6,6 +6,7 @@ import { ReservationsService, Room } from '../reservations.service';
 import { ReservationsComponent } from '../reservations/reservations.component';
 import { ManagementService } from '../management.service';
 import { Form, FormBuilder } from '@angular/forms';
+import { AddRoomComponent } from '../add-room/add-room.component';
 
 @Component({
   selector: 'app-management',

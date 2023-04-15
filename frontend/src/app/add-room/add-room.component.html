@@ -1,1 +1,27 @@
-<p>add-room works!</p>
+<div class="add-new-room">
+    <form>
+      <mat-card>
+          <mat-card-header>
+              <mat-card-title>Add Rooms</mat-card-title>
+          </mat-card-header>
+    
+          <mat-card-content>
+            <mat-form-field>
+                <mat-label label for="room_name">Room Name</mat-label>
+                <input id="room_name" type="text" formControlName="room_name">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label for="room_capicity">Room Capacity</mat-label>
+                <input id="room_capacity" type="number" formControlName="room_capacity">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label for="monday_time">Monday</mat-label>
+                <input matInput type="time" placeholder="start time">
+            </mat-form-field>
+
+        </mat-card-content>
+    
+          
+      </mat-card>
+    </form>
+</div>
