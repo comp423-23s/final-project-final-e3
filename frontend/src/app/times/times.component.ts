@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { Route } from '@angular/router';
-import { TimesService } from '../times.service';
+import { TimesService, Schedule, AvailableTimes } from '../times.service';
+import { Room } from '../reservations.service';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-times',
@@ -13,4 +16,11 @@ export class TimesComponent {
     component: TimesComponent, 
     title: 'Times', 
   };
+
+  // public times$: Observable<TimeSlots[]>;
+
+
+  // constructor(private timesService: TimesService){
+  //   this.times$ = TimesService.getTimes();
+  // }
 }

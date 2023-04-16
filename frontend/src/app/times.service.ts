@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Room } from './reservations.service';
+import { HttpClient } from '@angular/common/http';
 
 
 
@@ -19,5 +20,13 @@ export interface Schedule {
 })
 export class TimesService {
 
-  constructor() { }
+  constructor(protected http: HttpClient) { }
+
+  getTimes(roomName: String) {
+    return this.http.get<AvailableTimes>(`/api/room/${roomName}`);
+  }
+}
+
+export interface AvailableTimes {
+  [date: string]: Array<[startTime: string, endTime: string]>;
 }

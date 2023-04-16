@@ -14,13 +14,37 @@
           </thead>
 
         <tbody>
-
           <tr *ngFor="let room of rooms$ | async">
             <td>{{ room.name }}</td>
             <td>{{ room.max_capacity }}</td>
-            <button title = "check_availibility"><a mat-list-item routerLink="/times">Availabile times</a></button>
-        </tr>
+            <button title = "check_availibility" (click)="displayTimes(room.name)">Availabile times</button>
+          </tr>
        </tbody>
+  </table>
+</div>
 
+<div>
+  <h1>Available Times</h1>
+  <table name="table" id="table">
+    <colgroup>
+        <col style="width:1000px">
+        <col style="width:1000px">
+    </colgroup>  
+
+      <thead>
+        <td>Date</td>
+        <td>Times</td>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let date of times$ | async | keyvalue">
+          <td>{{ date.key }}</td>
+          <ul>
+            <td *ngFor="let time of date.value">
+              <button>{{ time[0] }} - {{ time[1] }}</button>
+            </td>
+          </ul>
+        </tr>
+      </tbody>
   </table>
 </div>
