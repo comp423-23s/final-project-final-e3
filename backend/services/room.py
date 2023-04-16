@@ -101,14 +101,14 @@ class RoomService:
         self.add(room)
 
 
-    def add(self, user_pid: int, room: Room) -> str:
+    def add(self, room: Room) -> str:
         """Staff adds a new room into database"""
         room_entity = RoomEntity.from_model(room)
         self._session.add(room_entity)
         self._session.commit()
         return "room added successfully"
 
-    def delete(self, user_pid: int, room_name: str) -> str:
+    def delete(self, room_name: str) -> str:
         """Staff deletes a room specified by name from database"""
         room_to_delete = self._session.query(RoomEntity).filter_by(name=room_name).one()
         if room_to_delete is None:

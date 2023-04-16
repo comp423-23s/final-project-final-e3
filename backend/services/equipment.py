@@ -21,14 +21,14 @@ class EquipmentService:
         return [equipment_entity.to_model() for equipment_entity in equipment_entities]
 
     
-    def add(self, user_pid: int, equipment: Equipment) -> str:
+    def add(self, equipment: Equipment) -> str:
         """Staff adds an equipment into database"""
         equipment_entity = EquipmentEntity.from_model(equipment)
         self._session.add(equipment_entity)
         self._session.commit()
         return "Equipment added successfully"
     
-    def delete(self, user_pid:int, equipment_name: str):
+    def delete(self, equipment_name: str):
         """Staff deletes an equipment specified by name from database"""
         equipment_to_delete = self._session.query(EquipmentEntity).filter_by(name=equipment_name).one()
         if equipment_to_delete is None:

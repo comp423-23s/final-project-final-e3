@@ -26,7 +26,7 @@ class ReservationService:
         return [reservation_entity.to_model() for reservation_entity in reservation_entities if reservation_entity.pid == int(subject_name_or_pid)] 
 
 
-    def list_all(self, user_pid: int):
+    def list_all(self):
         """Only staff can list all reservations in database."""
         statement = select(ReservationEntity)
         reservation_entities = self._session.execute(statement).scalars()
