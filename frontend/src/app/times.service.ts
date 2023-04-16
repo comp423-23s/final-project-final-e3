@@ -1,21 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Room } from './reservations.service';
 
-export interface TimeSlot {
-  startTime: string;
-  endTime: string;
-  timeInterval: string | null | undefined;
-}
+
 
 export interface Schedule {
-  Sunday: TimeSlot;
-  Monday: TimeSlot;
-  Tuesday: TimeSlot ;
-  Wednesday: TimeSlot;
-  Thursday: TimeSlot;
-  Friday: TimeSlot;
-  Saturday: TimeSlot;
+  Sunday: string[];
+  Monday: string[];
+  Tuesday: string[];
+  Wednesday: string[];
+  Thursday: string[];
+  Friday: string[];
+  Saturday: string[];
 }
+
 
 @Injectable({
   providedIn: 'root'
