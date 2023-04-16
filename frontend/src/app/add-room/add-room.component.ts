@@ -80,6 +80,12 @@ export class AddRoomComponent{
                 startTime: form.friday_start?? "", endTime: form.friday_end??"", timeInterval: form.time_interval}, Saturday: {
                   startTime: form.saturday_start?? "", endTime: form.saturday_end??"", timeInterval: form.time_interval}
     }
+    console.log(room_name)
+    console.log(capacity)
+    console.log(schedule.Friday.startTime)
+    console.log(schedule.Friday.endTime)
+    console.log(schedule.Friday.timeInterval)
+    console.log(schedule)
     this.addRoomService.create_room(room_name, capacity, schedule).subscribe(
       {
         next: (room) => this.onSuccess(room),
@@ -90,6 +96,7 @@ export class AddRoomComponent{
   }
 
   private onSuccess(room: Room) {
+   
     window.alert(`The room ${room.name} has been added.`);
     this.newRoomForm.reset();
   }
