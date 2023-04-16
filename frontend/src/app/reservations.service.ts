@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { Profile } from './profile/profile.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import{ Schedule, TimeSlot} from './times.service'
 
 export interface Room {
-  id: number
   name: string
   max_capacity: number
+  schedule: Schedule;
 }
 
 
