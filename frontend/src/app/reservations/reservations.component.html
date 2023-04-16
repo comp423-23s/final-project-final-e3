@@ -3,9 +3,9 @@
 
     <table name="table" id="table">
         <colgroup>
-            <col style="width:500px">
-            <col style="width:500px">
-          </colgroup>  
+            <col style="width:1000px">
+            <col style="width:1000px">
+        </colgroup>  
 
           <thead>
             <td>Room Name</td>
@@ -18,7 +18,7 @@
           <tr *ngFor="let room of rooms$ | async">
             <td>{{ room.name }}</td>
             <td>{{ room.max_capacity }}</td>
-            <button title = "check_time"><a mat-list-item routerLink="/times">Times</a></button>
+            <button title = "check_availibility"><a mat-list-item routerLink="/times">Availabile times</a></button>
         </tr>
        </tbody>
 
