@@ -28,8 +28,6 @@ export class ReservationsService {
 
     addReservation(identifier_id: String, roomName: String, pid: number, start_time: String, end_time: String) : Observable<Reservations>{
       let reserve: Reservations = {identifier_id: identifier_id, pid: pid, subject_name: roomName, start: start_time, end: end_time}
-      let x = JSON.stringify(reserve);
-      console.log(x);
       return this.http.post<Reservations>("/api/reserve", reserve)
     }
 }
