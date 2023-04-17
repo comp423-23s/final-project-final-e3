@@ -7,3 +7,14 @@
     width: stretch;
     /* margin-left: 1em; */
 }
+
+.add-button {
+    background-color: #52bc00;
+    border: black;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+}
