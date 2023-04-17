@@ -20,8 +20,8 @@ def edit_schedule(room_name: str, deviations: Dict[str,List[Tuple[str, str]]], r
 
 @api.post("", tags=["Room"])
 def add(room: Room, room_svc: RoomService = Depends()) -> None:
-    return room_svc.add(user_pid, room)
+    return room_svc.add(room)
 
 @api.delete("/{room_name}", tags=["Room"])
 def delete(room_name: str, room_svc: RoomService = Depends()) -> None:
-    return room_svc.delete(user_pid, room_name)
+    return room_svc.delete(room_name)

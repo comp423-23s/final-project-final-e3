@@ -68,17 +68,18 @@ export class AddRoomComponent{
 
 
   onSubmit(): void {
+    
     let form = this.newRoomForm.value;
+    
     let room_name = form.room_name ?? "";
     let capacity = parseInt(form.room_capacity ?? "");
-    let schedule : Schedule = { Sunday: {
-      startTime: form.sunday_start?? "", endTime: form.sunday_end??"", timeInterval: form.time_interval},Monday: {
-      startTime: form.monday_start?? "", endTime: form.monday_end??"", timeInterval: form.time_interval}, Tuesday: {
-        startTime: form.tuesday_start?? "", endTime: form.tuesday_end??"", timeInterval: form.time_interval}, Wednesday: {
-          startTime: form.wednesday_start?? "", endTime: form.wednesday_end??"", timeInterval: form.time_interval}, Thursday: {
-            startTime: form.thursday_start?? "", endTime: form.thursday_end??"", timeInterval: form.time_interval}, Friday: {
-                startTime: form.friday_start?? "", endTime: form.friday_end??"", timeInterval: form.time_interval}, Saturday: {
-                  startTime: form.saturday_start?? "", endTime: form.saturday_end??"", timeInterval: form.time_interval}
+    let schedule : Schedule = { Sunday: [form.sunday_start?? "", form.sunday_end??"", form.time_interval??""]
+      ,Monday: [form.monday_start?? "", form.monday_end??"", form.time_interval??""],
+       Tuesday:[form.tuesday_start?? "", form.tuesday_end??"", form.time_interval??""], 
+       Wednesday: [form.wednesday_start?? "", form.wednesday_end??"", form.time_interval??""], 
+       Thursday: [form.thursday_start?? "", form.thursday_end??"", form.time_interval??""], 
+       Friday: [form.friday_start?? "", form.friday_end??"", form.time_interval??""], 
+       Saturday: [form.saturday_start?? "", form.saturday_end??"", form.time_interval??""]
     }
     this.addRoomService.create_room(room_name, capacity, schedule).subscribe(
       {
@@ -86,11 +87,11 @@ export class AddRoomComponent{
         error: (err) => this.onError(err)
       } 
     );
-    
   }
 
   private onSuccess(room: Room) {
-    window.alert(`The room ${room.name} has been added.`);
+   
+    window.alert(`The room has been added.`);
     this.newRoomForm.reset();
   }
 
