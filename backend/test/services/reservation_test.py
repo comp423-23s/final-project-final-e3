@@ -1,4 +1,4 @@
-"""Testing reservation functions"""
+"""Testing reservation service functions"""
 
 import pytest
 
