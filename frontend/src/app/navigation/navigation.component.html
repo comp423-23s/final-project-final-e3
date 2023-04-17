@@ -12,9 +12,12 @@
         <ng-template #authenticated mat-list-item>
           <a mat-list-item *ngIf="adminPermission$ | async" routerLink="/admin">Admin</a>
           <a mat-list-item *ngIf="adminPermission$ | async" routerLink="/management">Management</a>
+          <a mat-list-item *ngIf="adminPermission$ | async" routerLink="/staff">Staff Page</a>
+
 
           <mat-divider></mat-divider>
           <a mat-list-item routerLink="/reservations">Reservations</a>
+          <a mat-list-item routerLink="/myreservations">My Reservations</a>
           <a mat-list-item routerLink="/profile">Profile</a>
           <a mat-list-item (click)="auth.signOut()">Sign out</a>
         </ng-template>
