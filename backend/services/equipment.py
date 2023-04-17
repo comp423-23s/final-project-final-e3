@@ -1,3 +1,5 @@
+"""Equipment services managing and changing equipments and their availability schedules"""
+
 from ..database import db_session
 from sqlalchemy import select, or_, func
 from sqlalchemy.orm import Session
@@ -28,6 +30,7 @@ class EquipmentService:
         self._session.commit()
         return "Equipment added successfully"
     
+
     def delete(self, equipment_name: str):
         """Staff deletes an equipment specified by name from database"""
         equipment_to_delete = self._session.query(EquipmentEntity).filter_by(name=equipment_name).one()
