@@ -7,9 +7,11 @@ from ...models import User, Room
 from ...entities import RoomEntity
 from ...services import RoomService
 
+
+
 # Mock room models
-room1 = Room(id=1, name="A1", max_capacity=3)
-room2 = Room(id=2, name="A2", max_capacity=5)
+room1 = Room(name="A1", max_capacity=3)
+room2 = Room(name="A2", max_capacity=5)
 
 # Mock users
 
@@ -33,3 +35,8 @@ def test_add_room(room: RoomService):
     room_service.add(2, "A2", 5)
     rooms = room_service.list()
     assert len(rooms) == 2
+
+def test_delete_room(room: RoomService):
+    room_service.delete("A1")
+    rooms = room_service.list()
+    assert len(rooms) == 1
