@@ -1,26 +1,32 @@
 import { Injectable } from '@angular/core';
 import { Room } from './reservations.service';
+import { HttpClient } from '@angular/common/http';
 
-export interface TimeSlot {
-  startTime: string;
-  endTime: string;
-  timeInterval: string | null | undefined;
-}
+
 
 export interface Schedule {
-  Sunday: TimeSlot;
-  Monday: TimeSlot;
-  Tuesday: TimeSlot ;
-  Wednesday: TimeSlot;
-  Thursday: TimeSlot;
-  Friday: TimeSlot;
-  Saturday: TimeSlot;
+  Sunday: string[];
+  Monday: string[];
+  Tuesday: string[];
+  Wednesday: string[];
+  Thursday: string[];
+  Friday: string[];
+  Saturday: string[];
 }
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class TimesService {
 
-  constructor() { }
+  constructor(protected http: HttpClient) { }
+
+  getTimes(roomName: String) {
+    return this.http.get<AvailableTimes>(`/api/room/${roomName}`);
+  }
+}
+
+export interface AvailableTimes {
+  [date: string]: Array<[startTime: string, endTime: string]>;
 }
