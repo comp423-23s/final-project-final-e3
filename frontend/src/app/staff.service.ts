@@ -12,4 +12,12 @@ export class StaffService {
   listAllReservations() {
     return this.http.get<Reservations[]>("/api/reserve")
   }
+
+  listUserReservations(pid: number) {
+    return this.http.get<Reservations[]>(`/api/reserve/${pid}`)
+  }
+
+  deleteReservation(id: String) {
+    return this.http.delete<Reservations>(`/api/reserve/${id}`)
+  }
 }

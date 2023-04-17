@@ -9,6 +9,7 @@ import { TimesComponent } from './times/times.component';
 import { ManagementComponent } from './management/management.component';
 import { AddRoomComponent } from './add-room/add-room.component';
 import { StaffComponent } from './staff/staff.component';
+import { MyreservationsComponent } from './myreservations/myreservations.component';
 
 const routes: Routes = [
   HomeComponent.Route,
@@ -19,6 +20,7 @@ const routes: Routes = [
   GateComponent.Route,
   AddRoomComponent.Route,
   StaffComponent.Route,
+  MyreservationsComponent.Route,
   { path: 'admin', title: 'Admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
 ];
 
