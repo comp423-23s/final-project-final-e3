@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { Route } from '@angular/router';
 import { isAuthenticated } from '../gate/gate.guard';
+import { Reservations, ReservationsService } from '../reservations.service';
+import { Observable } from 'rxjs';
+import { TimesService } from '../times.service';
+import { HttpClient } from '@angular/common/http';
+import { StaffService } from '../staff.service';
 
 @Component({
   selector: 'app-staff',
@@ -14,4 +19,10 @@ export class StaffComponent {
     title: 'Staff Page', 
     canActivate: [isAuthenticated], 
   };
+
+  public reservations$: Observable<Reservations[]>
+
+  constructor(private staffService: StaffService){
+    this.reservations$ = staffService.listAllReservations();
+  }
 }
