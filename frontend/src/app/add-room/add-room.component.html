@@ -1,0 +1,94 @@
+<div>
+    <form [formGroup] = "newRoomForm" (ngSubmit) = "onSubmit()">
+      <mat-card>
+          <mat-card-header>
+              <mat-card-title>Add Rooms</mat-card-title>
+          </mat-card-header>
+          
+          <mat-card-content>
+            <p>
+                <mat-form-field appearance = "outline">
+                    <label matLabel color = "white">Room Name</label>
+                    <input matInput id="room_name" type="text" formControlName="room_name">
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance = "fill">
+                    <label matLabel color = "white">Room Capacity</label>
+                    <input matInput id="capacity" type="number" formControlName="room_capacity">
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field>
+                    <label color = "white">Monday start time</label>
+                    <input matInput id="monday_start" type="time" placeholder="start time" formControlName="monday_start">
+                    <label color = "white">Monday end time</label>
+                    <input matInput id = "monday_end" type="time" placeholder="end time" formControlName="monday_end">
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field>
+                    <label color = "white">Tuesday start time</label>
+                    <input matInput id="tuesday_start" type="time" placeholder="start time" formControlName="tuesday_start">
+                    <label color = "white">Tuesday end time</label>
+                    <input matInput id="tuesday_end" type="time" placeholder="end time" formControlName="tuesday_end">
+                </mat-form-field>
+            </p>
+            
+            <p>
+                <mat-form-field>
+                    <label color = "white">Wednesday start time</label>
+                    <input matInput id="wednesday_start" type="time" placeholder="start time" formControlName="wednesday_start">
+                    <label color = "white">Tuesday end time</label>
+                    <input matInput id="wednesday_end" type="time" placeholder="end time" formControlName="wednesday_end">
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field>
+                    <label color = "white">Thursday start time</label>
+                    <input matInput id="thursday_start" type="time" placeholder="start time" formControlName="thursday_start">
+                    <label color = "white">Thursday end time</label>
+                    <input matInput id="thursday_end" type="time" placeholder="end time" formControlName="thursday_end">
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field>
+                    <label color = "white">Friday start time</label>
+                    <input matInput id="friday_start" type="time" placeholder="start time" formControlName="friday_start">
+                    <label color = "white">Friday end time</label>
+                    <input matInput id="friday_end" type="time" placeholder="end time" formControlName="friday_end">
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field>
+                    <label color = "white">Saturday start time</label>
+                    <input matInput id = "saturday_start" type="time" placeholder="start time" formControlName="saturday_start">
+                    <label color = "white">Saturday end time</label>
+                    <input matInput id = "saturday_end" type="time" placeholder="end time" formControlName="saturday_end">
+                </mat-form-field>
+            </p>
+
+            <p>
+                <mat-form-field>
+                    <label color = "white">Sunday start time</label>
+                    <input matInput id = "sunday_start" type="time" placeholder="start time" formControlName="sunday_start">
+                    <label color = "white">Sunday end time</label>
+                    <input matInput id = "sunday_end" type="time" placeholder="end time" formControlName="sunday_end">
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance = "outline">
+                    <label color = "white">Time Interval</label>
+                    <input matInput id="time_interval" type="text" formControlName="room_name" formControlName="time_interval">
+                </mat-form-field>
+            </p>
+            <p>
+                <button class="add-button" type="submit">Add Room</button>
+            </p>
+        </mat-card-content>
+    
+          
+      </mat-card>
+    </form>
+</div>
+

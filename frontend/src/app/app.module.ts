@@ -34,6 +34,11 @@ import { HomeComponent } from './home/home.component';
 import { GateComponent } from './gate/gate.component';
 import { ProfileEditorComponent } from './profile/profile-editor/profile-editor.component';
 import { ReservationsComponent } from './reservations/reservations.component';
+import { TimesComponent } from './times/times.component';
+import { ManagementComponent } from './management/management.component';
+import { AddRoomComponent } from './add-room/add-room.component';
+import { StaffComponent } from './staff/staff.component';
+import { MyreservationsComponent } from './myreservations/myreservations.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +48,12 @@ import { ReservationsComponent } from './reservations/reservations.component';
     HomeComponent,
     GateComponent,
     ProfileEditorComponent,
-    ReservationsComponent
+    ReservationsComponent,
+    TimesComponent,
+    ManagementComponent,
+    AddRoomComponent,
+    StaffComponent,
+    MyreservationsComponent
   ],
   imports: [
     BrowserModule,

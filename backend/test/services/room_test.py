@@ -1,13 +1,18 @@
+"""Testing room functions"""
+
 import pytest
 
 from sqlalchemy.orm import Session
-from ...models import Room
+from ...models import User, Room
 from ...entities import RoomEntity
 from ...services import RoomService
 
-# Mock models
+# Mock room models
 room1 = Room(id=1, name="A1", max_capacity=3)
 room2 = Room(id=2, name="A2", max_capacity=5)
+
+# Mock users
+
 
 @pytest.fixture(autouse=True)
 def setup(test_session: Session):

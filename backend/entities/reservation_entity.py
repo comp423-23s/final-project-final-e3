@@ -8,7 +8,7 @@ from . import RoomEntity
 class ReservationEntity(EntityBase):
     __tablename__ = 'reservation'
 
-    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    identifier_id: Mapped[str] = mapped_column(String, primary_key=True)
     subject_name: Mapped[str] = mapped_column(String)
     pid: Mapped[int] = mapped_column(Integer)
     start: Mapped[str] = mapped_column(String)
@@ -17,7 +17,7 @@ class ReservationEntity(EntityBase):
     @classmethod
     def from_model(cls, model: Reservation) -> Self:
         return cls(
-            id=model.id,
+            identifier_id=model.identifier_id,
             subject_name=model.subject_name,
             pid=model.pid,
             start=model.start,
@@ -26,7 +26,7 @@ class ReservationEntity(EntityBase):
 
     def to_model(self) -> Reservation:
         return Reservation(
-            id=self.id,
+            identifier_id=self.identifier_id,
             subject_name=self.subject_name,
             pid=self.pid,
             start=self.start,

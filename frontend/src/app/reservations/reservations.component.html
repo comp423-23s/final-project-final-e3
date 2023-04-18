@@ -1,26 +1,50 @@
 <div class="reservation-table-box">
     <h1>Available Rooms</h1>
+
     <table name="table" id="table">
         <colgroup>
-            <col style="width:500px">
-            <col style="width:500px">
-          </colgroup>  
+            <col style="width:1000px">
+            <col style="width:1000px">
+        </colgroup>  
 
           <thead>
-            <td>Room ID</td>
-            <td>Name</td>
-            <td>Max Capacity</td>
+            <td>Room Name</td>
+            <td>Max_Capacity</td>
+            <td>Availability</td>
           </thead>
 
         <tbody>
-
           <tr *ngFor="let room of rooms$ | async">
-            <td>{{ room.id }}</td>
-            <td>{{ room.name}}</td>
+            <td>{{ room.name }}</td>
             <td>{{ room.max_capacity }}</td>
-        </tr>
- 
-        </tbody>
+            <button title = "check_availibility" (click)="displayTimes(room.name)">Availabile times</button>
+          </tr>
+       </tbody>
+  </table>
+</div>
 
+<div>
+  <h1>Available Times</h1>
+  <table name="table" id="table">
+    <colgroup>
+        <col style="width:1000px">
+        <col style="width:1000px">
+    </colgroup>  
+
+      <thead>
+        <td>Date</td>
+        <td>Times</td>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let date of times$ | async | keyvalue">
+          <td>{{ date.key }}</td>
+          <ul>
+            <td *ngFor="let time of date.value">
+              <button (click)="reserveRoom(room_name, time[0], time[1], date.key)">{{ time[0] }}-{{ time[1] }}</button>
+            </td>
+          </ul>
+        </tr>
+      </tbody>
   </table>
 </div>
