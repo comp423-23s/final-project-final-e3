@@ -22,7 +22,7 @@ export class ManagementComponent {
   };
 
   public rooms$: Observable<Room[]>;
-  public rName: String;
+  public rName: string;
 
   public newRoomForm = this.formBuilder.group({
     room_name: '',

@@ -4,6 +4,7 @@ import { isAuthenticated } from '../gate/gate.guard';
 import { Observable } from 'rxjs';
 import { Reservations } from '../reservations.service';
 import { StaffService } from '../staff.service';
+import { ReservationID } from '../staff.service';
 
 @Component({
   selector: 'app-myreservations',
@@ -39,14 +40,22 @@ export class MyreservationsComponent {
     this.reservations$ = this.staffService.listUserReservations(pid);
   }
 
-  deleteMyReservation(id: String) {
-    console.log(id);
-    this.staffService.deleteReservation(id).subscribe( {
-      next: (reservations) => this.onSuccess(reservations)
-    });
-  }
+  // deleteMyReservation(reservation_id: string) {
+  //   this.staffService.deleteMyReservation(reservation_id).subscribe( {
+  //     next: (reservation) => this.onSuccess(reservation),
+  //       error: (err) => this.onError(err)
+  //   });
+  // }
 
   onSuccess(reservation: Reservations) {
     window.location.reload();
+  }
+
+  private onError(err: any) {
+    if (err.message) {
+      window.alert(err.message);
+    } else {
+      window.alert("Unknown error: " + JSON.stringify(err));
+    }
   }
 }

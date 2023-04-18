@@ -17,7 +17,7 @@
             <tr *ngFor="let reservations of reservations$ | async">
                 <td>{{ reservations.subject_name}}</td>
                 <td>{{ reservations.start}} - {{ reservations.end }}</td>
-                <td><button (click)="deleteMyReservation(reservations.identifier_id)">Delete</button></td>
+                <td><button>Delete</button></td>
             </tr>
         </tbody>
   
