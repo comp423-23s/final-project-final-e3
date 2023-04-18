@@ -22,7 +22,7 @@ export class ReservationsComponent {
 
   public rooms$: Observable<Room[]>;
   public times$: Observable<AvailableTimes> | null;
-  public room_name: String;
+  public room_name: string;
 
   constructor(private reservationService: ReservationsService, private timeService: TimesService, protected http: HttpClient){
     this.rooms$ = reservationService.list_of_rooms();
@@ -30,12 +30,12 @@ export class ReservationsComponent {
     this.room_name = "1"
   }
 
-  displayTimes(roomName: String) {
+  displayTimes(roomName: string) {
     this.times$ = this.timeService.getTimes(roomName);
     this.room_name = roomName;
   }
 
-  reserveRoom(roomName: String, start_time: String, end_time: String, date: String) {
+  reserveRoom(roomName: string, start_time: string, end_time: string, date: string) {
     let pid:string = prompt("Please enter your pid", "0")!;
     let pid_num: number | null = parseInt(pid);
     this.room_name = roomName;

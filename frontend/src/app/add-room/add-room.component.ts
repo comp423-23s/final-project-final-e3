@@ -42,28 +42,6 @@ export class AddRoomComponent{
   });
 
   constructor(protected formBuilder: FormBuilder, protected addRoomService: AddRoomService) {
-    // const form = this.newRoomForm;
-    // form.get('room_name')?.addValidators(Validators.required);
-    // form.get('room_capacity')?.addValidators(Validators.required);
-    // form.get('monday_start')?.addValidators(Validators.required);
-    // form.get('monday_end')?.addValidators(Validators.required);
-    // form.get('tuesday_start')?.addValidators(Validators.required);
-    // form.get('tuesday_end')?.addValidators(Validators.required);
-    // form.get('wednesday_start')?.addValidators(Validators.required);
-    // form.get('wednesday_end')?.addValidators(Validators.required);
-    // form.get('thursay_start')?.addValidators(Validators.required);
-    // form.get('thurday_end')?.addValidators(Validators.required);
-    // form.get('friday_start')?.addValidators(Validators.required);
-    // form.get('friday_end')?.addValidators(Validators.required);
-    // form.get('saturday_start')?.addValidators(Validators.required);
-    // form.get('saturday_end')?.addValidators(Validators.required);
-    // form.get('sunday_start')?.addValidators(Validators.required);
-    // form.get('sunday_end')?.addValidators(Validators.required);
-    // form.get('time_interval')?.addValidators(Validators.required);
-    
-
-    // const data = route.snapshot.data as { room: Room };
-    // this.newRoom = data.room;
   }
 
 
