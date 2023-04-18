@@ -6,7 +6,7 @@ api = APIRouter(prefix="/api/reserve")
 
 @api.get("", response_model=list[Reservation], tags=['Reservation'])
 def list_all(reserve_svc: ReservationService = Depends()):
-    return reserve_svc.list_all(user_pid)
+    return reserve_svc.list_all()
 
 @api.get("/{subject_name_or_pid}", response_model=list[Reservation], tags=['Reservation'])
 def list(subject_name_or_pid: str | int, reserve_svc: ReservationService = Depends()):
@@ -16,6 +16,6 @@ def list(subject_name_or_pid: str | int, reserve_svc: ReservationService = Depen
 def add(reservation: Reservation, reserve_svc: ReservationService = Depends()) -> None:
     return reserve_svc.add(reservation)
 
-@api.delete("", tags=['Reservation'])
+@api.delete("/{reservation_id}", tags=['Reservation'])
 def delete(reservation_id: str, reserve_svc: ReservationService = Depends()) -> None:
     return reserve_svc.delete(reservation_id)
