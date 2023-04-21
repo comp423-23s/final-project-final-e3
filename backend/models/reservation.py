@@ -3,7 +3,7 @@
 from pydantic import BaseModel
 
 class Reservation(BaseModel):
-    id: int
+    identifier_id: str
     pid: int
     subject_name: str
     start: str

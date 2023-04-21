@@ -1,9 +1,8 @@
 """Equipment model representing reservable equipments"""
 
 from pydantic import BaseModel
-from . import Reservation
+from typing import Dict, List
 
 class Equipment(BaseModel):
-    id: int | None = None
     name: str
-    reservations: list['Reservation'] = []
+    availability: Dict[str,List[str]]
