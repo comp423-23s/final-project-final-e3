@@ -1,3 +1,5 @@
+"""Equipment services managing and changing equipments and their availability schedules"""
+
 from ..database import db_session
 from sqlalchemy import select, or_, func
 from sqlalchemy.orm import Session

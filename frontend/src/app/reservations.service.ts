@@ -26,17 +26,17 @@ export class ReservationsService {
       return this.http.get<Room[]>("/api/room");
     }
 
-    addReservation(identifier_id: string, roomName: string, pid: number, start_time: string, end_time: string) : Observable<Reservations>{
+    addReservation(identifier_id: String, roomName: String, pid: number, start_time: String, end_time: String) : Observable<Reservations>{
       let reserve: Reservations = {identifier_id: identifier_id, pid: pid, subject_name: roomName, start: start_time, end: end_time}
       return this.http.post<Reservations>("/api/reserve", reserve)
     }
 }
 
 export interface Reservations {
-  identifier_id: string
+  identifier_id: String
   pid: number
-  subject_name: string
-  start: string
-  end: string
+  subject_name: String
+  start: String
+  end: String
 }
 

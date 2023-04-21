@@ -1,3 +1,5 @@
+"""Room services managing and changing rooms and their availability schedules"""
+
 from fastapi import Depends
 from sqlalchemy import select, or_, func
 from sqlalchemy.orm import Session
@@ -57,63 +59,20 @@ class RoomService:
         statement = select(RoomEntity).order_by(RoomEntity.name)
         room_entities = self._session.execute(statement).scalars()
         return [room_entity.to_model() for room_entity in room_entities]
-    
-    def list_schedule(self, room_id:str):
-        """Returns list of all available times slots for the next two weeks."""
-
-        room_entity = self._session.query(RoomEntity).filter_by(name=room_id).one()
-        room = room_entity.to_model()
-
-        schedule = {}
-
-        this_sun = get_sunday_of_week()
-        next_sat = get_saturday_of_next_week()
-        dates = list_dates_in_between(this_sun, next_sat)
-        for date in dates: 
-            start, end, interval = room.availability[dow_mapping[date.weekday()]]
-            start = datetime.strptime(start, "%H:%M")
-            end = datetime.strptime(end, "%H:%M")
-            interval = float(interval)
-
-            try:
-                deviations = room.deviations[date.strftime(r"%m/%d")]
-            except KeyError:
-                deviations = []
-
-            if deviations:
-                time_slots = deviations
-            else:
-                time_slots = list_time_slots(start, end, interval)
-
-            schedule[date.strftime(r"%m/%d")] = time_slots
-                
-        return schedule
-    
-    def edit_schedule(self, room_name, deviations) -> None:
-        room_entity = self._session.query(RoomEntity).filter_by(name=room_name).one()
-        room = room_entity.to_model()
-
-        # Does not change room's schedule, but does change rooms deviations list. 
-        for date_str in deviations:
-            room.deviations[date_str] = deviations[date_str]
-
-        self.delete(room.name)
-        self.add(room)
 
 
-    def add(self, room: Room) -> str:
-        """Staff adds a new room into database"""
+    def add(self, room: Room) -> None:
+        """Add room into database"""
         room_entity = RoomEntity.from_model(room)
         self._session.add(room_entity)
         self._session.commit()
         return "room added successfully"
 
-    def delete(self, room_name: str) -> str:
-        """Staff deletes a room specified by name from database"""
+
+    def delete(self, room_name: str) -> None:
+        """Delete a room specified by name from database"""
         room_to_delete = self._session.query(RoomEntity).filter_by(name=room_name).one()
         if room_to_delete is None:
             return "Room not found"
         self._session.delete(room_to_delete)
         self._session.commit()
-        return "Room deleted successfully"
-        
