@@ -46,11 +46,11 @@ export class ReservationsComponent {
     let new_end = `${end_time}-${date}`
     let identifier_id = `${roomName}&${pid}&${new_start}`
     // const identifier_id_hashed = crypto.createHash('sha256').update(identifier_id).digest('hex');
-    const identifier_id_hashed = SHA256(identifier_id);
+    let identifier_id_hashed = SHA256(identifier_id);
     console.log(identifier_id);
     console.log(identifier_id_hashed);
-
-    this.reservationService.addReservation(identifier_id_hashed, roomName, pid_num, new_start, new_end).subscribe(
+    let identifier_id_str = identifier_id_hashed.toString(crypto.enc.Hex)
+    this.reservationService.addReservation(identifier_id_str, roomName, pid_num, new_start, new_end).subscribe(
       {
         next: (reservation) => this.onSuccess(reservation),
         error: (err) => this.onError(err)

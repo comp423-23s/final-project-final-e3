@@ -32,7 +32,6 @@ export class MyreservationsComponent {
     let pid_num: number | null = parseInt(pid);
     this.pid = pid_num;
     this.getMyReservations(this.pid);
-    console.log(pid);
   }
   
   getMyReservations(pid: number) {
