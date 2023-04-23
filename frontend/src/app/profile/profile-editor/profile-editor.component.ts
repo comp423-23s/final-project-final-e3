@@ -74,7 +74,7 @@ export class ProfileEditorComponent implements OnInit {
     console.error("How to handle this?");
   }
 
-  getPID() {
-    return this.pid;
+  setPID() {
+    this.profileService.setPID(this.pid);
   }
 }

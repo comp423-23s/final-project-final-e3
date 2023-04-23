@@ -28,8 +28,10 @@ export interface Profile {
 export class ProfileService {
 
   public profile$: Observable<Profile | undefined>;
+  public pid: number;
 
   constructor(protected http: HttpClient, protected auth: AuthenticationService) {
+    this.pid = 0; 
     this.profile$ = this.auth.isAuthenticated$.pipe(
       mergeMap(isAuthenticated => {
         if (isAuthenticated) {
@@ -51,4 +53,11 @@ export class ProfileService {
     return this.http.get<Profile[]>(`/api/user?q=${encodedQuery}`);
   }
 
+  setPID(pid: number) {
+    this.pid = pid;
+  }
+
+  getPID() {
+    return this.pid;
+  }
 }
