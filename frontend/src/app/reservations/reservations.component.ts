@@ -6,6 +6,8 @@ import{ Reservations, ReservationsService, Room } from 'src/app/reservations.ser
 import { AvailableTimes, Schedule, TimesService } from '../times.service';
 import { HttpClient } from '@angular/common/http';
 
+import * as crypto from 'crypto-ts';
+const SHA256 = require("crypto-ts").SHA256;
 
 @Component({
   selector: 'app-reservations',
@@ -43,8 +45,12 @@ export class ReservationsComponent {
     let new_start = `${start_time}-${date}`
     let new_end = `${end_time}-${date}`
     let identifier_id = `${roomName}&${pid}&${new_start}`
+    // const identifier_id_hashed = crypto.createHash('sha256').update(identifier_id).digest('hex');
+    const identifier_id_hashed = SHA256(identifier_id);
+    console.log(identifier_id);
+    console.log(identifier_id_hashed);
 
-    this.reservationService.addReservation(identifier_id, roomName, pid_num, new_start, new_end).subscribe(
+    this.reservationService.addReservation(identifier_id_hashed, roomName, pid_num, new_start, new_end).subscribe(
       {
         next: (reservation) => this.onSuccess(reservation),
         error: (err) => this.onError(err)
