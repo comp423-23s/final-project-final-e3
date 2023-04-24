@@ -49,7 +49,8 @@ export class ReservationsComponent {
     let identifier_id_hashed = SHA256(identifier_id);
     console.log(identifier_id);
     console.log(identifier_id_hashed);
-    let identifier_id_str = identifier_id_hashed.toString(crypto.enc.Hex)
+    let identifier_id_str = identifier_id_hashed.toString()
+    console.log(identifier_id_str)
     this.reservationService.addReservation(identifier_id_str, roomName, pid_num, new_start, new_end).subscribe(
       {
         next: (reservation) => this.onSuccess(reservation),

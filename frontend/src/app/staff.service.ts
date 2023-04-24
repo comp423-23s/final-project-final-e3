@@ -13,7 +13,7 @@ export class StaffService {
     return this.http.get<Reservations[]>("/api/reserve")
   }
 
-  listUserReservations(pid: number) {
+  listUserReservations(pid: number|undefined) {
     return this.http.get<Reservations[]>(`/api/reserve/${pid}`)
   }
 

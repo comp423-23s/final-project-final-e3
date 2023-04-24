@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { Route } from '@angular/router';
 import { isAuthenticated } from '../gate/gate.guard';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Reservations } from '../reservations.service';
 import { StaffService } from '../staff.service';
+import { ProfileService } from '../profile/profile.service';
 
 @Component({
   selector: 'app-myreservations',
@@ -19,23 +20,25 @@ export class MyreservationsComponent {
   };
 
   public reservations$: Observable<Reservations[]>
-  public pid: number;
+  public pid: number|undefined;
+  public subscription: Subscription | undefined
 
-  constructor(private staffService: StaffService){
-    this.pid = 0;
+  constructor(private staffService: StaffService, private profileService: ProfileService){
+    this.subscription = this.profileService.getUserId().subscribe(pid => this.pid);
     this.reservations$ = staffService.listUserReservations(this.pid);
 
   }
 
-  getPID() {
-    let pid:string = prompt("Please enter your pid", "0")!;
-    let pid_num: number | null = parseInt(pid);
-    this.pid = pid_num;
-    this.getMyReservations(this.pid);
-  }
+  // getPID() {
+  //   let pid:string = prompt("Please enter your pid", "0")!;
+  //   let pid_num: number | null = parseInt(pid);
+  //   this.pid = pid_num;
+  //   this.getMyReservations(this.pid);
+  // }
   
-  getMyReservations(pid: number) {
-    this.reservations$ = this.staffService.listUserReservations(pid);
+  getMyReservations() {
+    console.log(this.pid)
+    this.reservations$ = this.staffService.listUserReservations(this.pid);
   }
 
   deleteMyReservation(id: String) {

@@ -22,7 +22,6 @@ export class ProfileEditorComponent implements OnInit {
   };
 
   public profile: Profile;
-  public pid: number;
 
   public profileForm = this.formBuilder.group({
     first_name: '',
@@ -40,12 +39,10 @@ export class ProfileEditorComponent implements OnInit {
 
     const data = route.snapshot.data as { profile: Profile };
     this.profile = data.profile;
-    this.pid = this.profile.pid;
   }
 
   ngOnInit(): void {
     let profile = this.profile;
-
     this.profileForm.setValue({
       first_name: profile.first_name,
       last_name: profile.last_name,
@@ -74,7 +71,4 @@ export class ProfileEditorComponent implements OnInit {
     console.error("How to handle this?");
   }
 
-  setPID() {
-    this.profileService.setPID(this.pid);
-  }
 }

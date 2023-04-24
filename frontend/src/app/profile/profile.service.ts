@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { mergeMap, Observable, of, shareReplay } from 'rxjs';
+import { mergeMap, Observable, of, shareReplay, map, filter } from 'rxjs';
 import { AuthenticationService } from '../authentication.service';
 
 export interface Permission {
@@ -27,11 +27,10 @@ export interface Profile {
 })
 export class ProfileService {
 
-  public profile$: Observable<Profile | undefined>;
-  public pid: number;
+  public profile$: Observable<Profile| undefined>;
+  public pid$: Observable<number | undefined>;
 
   constructor(protected http: HttpClient, protected auth: AuthenticationService) {
-    this.pid = 0; 
     this.profile$ = this.auth.isAuthenticated$.pipe(
       mergeMap(isAuthenticated => {
         if (isAuthenticated) {
@@ -42,6 +41,7 @@ export class ProfileService {
       }),
       shareReplay(1)
     );
+    this.pid$ = this.profile$.pipe(filter(profile => !!profile), map(profile => profile!.pid));
   }
 
   put(profile: Profile) {
@@ -53,11 +53,7 @@ export class ProfileService {
     return this.http.get<Profile[]>(`/api/user?q=${encodedQuery}`);
   }
 
-  setPID(pid: number) {
-    this.pid = pid;
-  }
-
-  getPID() {
-    return this.pid;
+  getUserId(): Observable<number | undefined> {
+    return this.pid$;
   }
 }
