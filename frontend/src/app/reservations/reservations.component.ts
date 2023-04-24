@@ -24,17 +24,15 @@ export class ReservationsComponent {
   };
 
   public rooms$: Observable<Room[]>;
-  public times$: Observable<AvailableTimes> | null;
-  public room_name: String;
-  public profile$: Observable<Profile | undefined>;
-  public pid: number;
+  public times$: Observable<AvailableTimes> | undefined; 
+  public profile$: Observable<Profile| undefined>;
+  public pid: number|undefined;
+  public room_name: string|undefined;
 
   constructor(private reservationService: ReservationsService, private timeService: TimesService, protected http: HttpClient, private profileService: ProfileService){
     this.rooms$ = reservationService.list_of_rooms();
-    this.times$ = timeService.getTimes("A1");
-    this.room_name = "1"
+
     this.profile$ = this.profileService.profile$;
-    this.pid = 0;
     this.profile$.subscribe(profile => {
       if(profile) {
         console.log(profile.pid);
@@ -45,20 +43,26 @@ export class ReservationsComponent {
     })
   }
 
-  displayTimes(roomName: string) {
-    this.times$ = this.timeService.getTimes(roomName);
+  setRoomName(roomName: string) {
     this.room_name = roomName;
   }
 
-  reserveRoom(roomName: String, start_time: String, end_time: String, date: String) { 
+  getRoomName() {
+    return this.room_name;
+  }
+
+  displayTimes(roomName: string) {
     this.room_name = roomName;
+    this.times$ = this.timeService.getTimes(roomName);
+  }
+
+  reserveRoom(start_time: String, end_time: String, date: String) { 
 
     let new_start = `${start_time}-${date}`
     let new_end = `${end_time}-${date}`
-    let identifier_id = `${roomName}-${this.pid}-${new_start}`.replace(":", "").replace("/", "")
-    // const identifier_id_hashed = crypto.createHash('sha256').update(identifier_id).digest('hex');
+    let identifier_id = `${this.room_name}-${this.pid}-${new_start}`.replace(":", "").replace("/", "")
     console.log(identifier_id);
-    this.reservationService.addReservation(identifier_id, roomName, this.pid, new_start, new_end).subscribe(
+    this.reservationService.addReservation(identifier_id, this.room_name, this.pid, new_start, new_end).subscribe(
       {
         next: (reservation) => this.onSuccess(reservation),
         error: (err) => this.onError(err)
@@ -68,6 +72,7 @@ export class ReservationsComponent {
 
   private onSuccess(reservation: Reservations) {
     window.alert("Your reservation has been added.");
+    window.location.reload();
   }
 
   private onError(err: any) {

@@ -41,7 +41,7 @@
           <td>{{ date.key }}</td>
           <ul>
             <td *ngFor="let time of date.value">
-              <button class="reservation-time" (click)="reserveRoom(room_name, time[0], time[1], date.key)">{{ time[0] }}-{{ time[1] }}</button>
+              <button class="reservation-time" (click)="reserveRoom(time[0], time[1], date.key)">{{ time[0] }}-{{ time[1] }}</button>
             </td>
           </ul>
         </tr>

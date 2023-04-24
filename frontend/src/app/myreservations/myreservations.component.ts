@@ -21,11 +21,9 @@ export class MyreservationsComponent {
 
   public reservations$: Observable<Reservations[]>
   public pid: number|undefined;
-  public subscription: Subscription | undefined;
   public profile$: Observable<Profile | undefined>;
 
   constructor(private staffService: StaffService, private profileService: ProfileService){
-    this.subscription = this.profileService.getUserId().subscribe(pid => this.pid);
     this.profile$ = this.profileService.profile$;
     this.profile$.subscribe(profile => {
       if(profile) {
@@ -37,39 +35,19 @@ export class MyreservationsComponent {
     })
     this.reservations$ = staffService.listUserReservations(this.pid);
   }
-
-  // getPID() {
-  //   let pid:string = prompt("Please enter your pid", "0")!;
-  //   let pid_num: number | null = parseInt(pid);
-  //   this.pid = pid_num;
-  //   this.getMyReservations(this.pid);
-  // }
   
   getMyReservations() {
-    console.log(this.pid)
-    this.getPID();
     this.reservations$ = this.staffService.listUserReservations(this.pid);
   }
 
   deleteMyReservation(id: String) {
-    console.log(id);
     this.staffService.deleteReservation(id).subscribe( {
       next: (reservations) => this.onSuccess(reservations)
     });
   }
 
   onSuccess(reservation: Reservations) {
+    window.alert("Your reservation has been deleted.")
     window.location.reload();
-  }
-
-  getPID() {
-    this.profile$.subscribe(profile => {
-      if(profile) {
-        console.log(profile.pid);
-        this.pid = profile.pid
-      } else {
-        console.error("Profile does not exists")
-      }
-    })
   }
 }

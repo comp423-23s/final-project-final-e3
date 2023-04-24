@@ -17,10 +17,4 @@ export class TimesComponent {
     title: 'Times', 
   };
 
-  // public times$: Observable<TimeSlots[]>;
-
-
-  // constructor(private timesService: TimesService){
-  //   this.times$ = TimesService.getTimes();
-  // }
 }

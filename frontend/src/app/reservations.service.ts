@@ -21,12 +21,13 @@ export class ReservationsService {
 
   // public reservations$: Observable<Profile | undefined>;
   constructor(protected http: HttpClient) { }
+  
 
     list_of_rooms() {
       return this.http.get<Room[]>("/api/room");
     }
 
-    addReservation(identifier_id: String, roomName: String, pid: number, start_time: String, end_time: String) : Observable<Reservations>{
+    addReservation(identifier_id: String, roomName: string | undefined, pid: number | undefined, start_time: String, end_time: String) : Observable<Reservations>{
       let reserve: Reservations = {identifier_id: identifier_id, pid: pid, subject_name: roomName, start: start_time, end: end_time}
       return this.http.post<Reservations>("/api/reserve", reserve)
     }
@@ -34,8 +35,8 @@ export class ReservationsService {
 
 export interface Reservations {
   identifier_id: String
-  pid: number
-  subject_name: String
+  pid: number | undefined
+  subject_name: string | undefined
   start: String
   end: String
 }
