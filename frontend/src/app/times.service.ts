@@ -22,7 +22,7 @@ export class TimesService {
 
   constructor(protected http: HttpClient) { }
 
-  getTimes(roomName: string) {
+  getTimes(roomName: string | undefined) {
     return this.http.get<AvailableTimes>(`/api/room/${roomName}`);
   }
 }

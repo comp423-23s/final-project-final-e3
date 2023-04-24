@@ -29,7 +29,7 @@ export class ReservationsComponent {
   public pid: number|undefined;
   public room_name: string|undefined;
 
-  constructor(private reservationService: ReservationsService, private timeService: TimesService, protected http: HttpClient, private profileService: ProfileService){
+  constructor(private reservationService: ReservationsService, private timeService: TimesService, private profileService: ProfileService){
     this.rooms$ = reservationService.list_of_rooms();
 
     this.profile$ = this.profileService.profile$;
@@ -44,42 +44,7 @@ export class ReservationsComponent {
   }
 
   setRoomName(roomName: string) {
-    this.room_name = roomName;
+    this.reservationService.setRoomName(roomName);
   }
 
-  getRoomName() {
-    return this.room_name;
-  }
-
-  displayTimes(roomName: string) {
-    this.room_name = roomName;
-    this.times$ = this.timeService.getTimes(roomName);
-  }
-
-  reserveRoom(start_time: String, end_time: String, date: String) { 
-
-    let new_start = `${start_time}-${date}`
-    let new_end = `${end_time}-${date}`
-    let identifier_id = `${this.room_name}-${this.pid}-${new_start}`.replace(":", "").replace("/", "")
-    console.log(identifier_id);
-    this.reservationService.addReservation(identifier_id, this.room_name, this.pid, new_start, new_end).subscribe(
-      {
-        next: (reservation) => this.onSuccess(reservation),
-        error: (err) => this.onError(err)
-      } 
-    );
-  }
-
-  private onSuccess(reservation: Reservations) {
-    window.alert("Your reservation has been added.");
-    window.location.reload();
-  }
-
-  private onError(err: any) {
-    if (err.message) {
-      window.alert(err.message);
-    } else {
-      window.alert("Unknown error: " + JSON.stringify(err));
-    }
-  }
 }

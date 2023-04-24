@@ -48,6 +48,6 @@ export class MyreservationsComponent {
 
   onSuccess(reservation: Reservations) {
     window.alert("Your reservation has been deleted.")
-    window.location.reload();
+    // window.location.reload();
   }
 }
