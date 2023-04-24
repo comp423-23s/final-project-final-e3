@@ -7,6 +7,7 @@ import { AvailableTimes, Schedule, TimesService } from '../times.service';
 import { HttpClient } from '@angular/common/http';
 
 import * as crypto from 'crypto-ts';
+import { Profile, ProfileService } from '../profile/profile.service';
 const SHA256 = require("crypto-ts").SHA256;
 
 @Component({
@@ -25,11 +26,23 @@ export class ReservationsComponent {
   public rooms$: Observable<Room[]>;
   public times$: Observable<AvailableTimes> | null;
   public room_name: String;
+  public profile$: Observable<Profile | undefined>;
+  public pid: number;
 
-  constructor(private reservationService: ReservationsService, private timeService: TimesService, protected http: HttpClient){
+  constructor(private reservationService: ReservationsService, private timeService: TimesService, protected http: HttpClient, private profileService: ProfileService){
     this.rooms$ = reservationService.list_of_rooms();
     this.times$ = timeService.getTimes("A1");
     this.room_name = "1"
+    this.profile$ = this.profileService.profile$;
+    this.pid = 0;
+    this.profile$.subscribe(profile => {
+      if(profile) {
+        console.log(profile.pid);
+        this.pid = profile.pid
+      } else {
+        console.error("Profile does not exists")
+      }
+    })
   }
 
   displayTimes(roomName: string) {
@@ -37,21 +50,15 @@ export class ReservationsComponent {
     this.room_name = roomName;
   }
 
-  reserveRoom(roomName: String, start_time: String, end_time: String, date: String) {
-    let pid:string = prompt("Please enter your pid", "0")!;
-    let pid_num: number | null = parseInt(pid);
+  reserveRoom(roomName: String, start_time: String, end_time: String, date: String) { 
     this.room_name = roomName;
 
     let new_start = `${start_time}-${date}`
     let new_end = `${end_time}-${date}`
-    let identifier_id = `${roomName}&${pid}&${new_start}`
+    let identifier_id = `${roomName}-${this.pid}-${new_start}`.replace(":", "").replace("/", "")
     // const identifier_id_hashed = crypto.createHash('sha256').update(identifier_id).digest('hex');
-    let identifier_id_hashed = SHA256(identifier_id);
     console.log(identifier_id);
-    console.log(identifier_id_hashed);
-    let identifier_id_str = identifier_id_hashed.toString()
-    console.log(identifier_id_str)
-    this.reservationService.addReservation(identifier_id_str, roomName, pid_num, new_start, new_end).subscribe(
+    this.reservationService.addReservation(identifier_id, roomName, this.pid, new_start, new_end).subscribe(
       {
         next: (reservation) => this.onSuccess(reservation),
         error: (err) => this.onError(err)
