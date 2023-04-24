@@ -17,7 +17,7 @@
           <tr *ngFor="let room of rooms$ | async">
             <td>{{ room.name }}</td>
             <td>{{ room.max_capacity }}</td>
-            <button title = "check_availibility" (click)="displayTimes(room.name)">Availabile times</button>
+            <button class="availability" title = "check_availibility" (click)="displayTimes(room.name)">Availabile times</button>
           </tr>
        </tbody>
   </table>
@@ -33,7 +33,7 @@
 
       <thead>
         <td>Date</td>
-        <td>Times</td>
+        <td align="center">Times</td>
       </thead>
 
       <tbody>
@@ -41,7 +41,7 @@
           <td>{{ date.key }}</td>
           <ul>
             <td *ngFor="let time of date.value">
-              <button (click)="reserveRoom(room_name, time[0], time[1], date.key)">{{ time[0] }}-{{ time[1] }}</button>
+              <button class="reservation-time" (click)="reserveRoom(room_name, time[0], time[1], date.key)">{{ time[0] }}-{{ time[1] }}</button>
             </td>
           </ul>
         </tr>
