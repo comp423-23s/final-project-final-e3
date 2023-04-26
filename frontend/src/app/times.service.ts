@@ -14,6 +14,10 @@ export interface Schedule {
   Saturday: string[];
 }
 
+export interface AvailableTimes {
+  [date: string]: Array<[startTime: string, endTime: string]>;
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +31,4 @@ export class TimesService {
   }
 }
 
-export interface AvailableTimes {
-  [date: string]: Array<[startTime: string, endTime: string]>;
-}
+

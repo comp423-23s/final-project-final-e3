@@ -34,6 +34,10 @@ export class ManagementComponent {
     this.rName = "";
   }
 
+  setRoomName(roomName: string) {
+    this.reservationService.setRoomName(roomName);
+  }
+
   onClick(roomName: string): void {
     this.rName = roomName;
     this.managementService

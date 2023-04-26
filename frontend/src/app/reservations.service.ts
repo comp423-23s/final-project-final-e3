@@ -12,6 +12,14 @@ export interface Room {
   deviations: {}
 };
 
+export interface Reservations {
+  identifier_id: String
+  pid: number | undefined
+  subject_name: string | undefined
+  start: String
+  end: String
+}
+
 
 
 @Injectable({
@@ -41,11 +49,4 @@ export class ReservationsService {
     }
 }
 
-export interface Reservations {
-  identifier_id: String
-  pid: number | undefined
-  subject_name: string | undefined
-  start: String
-  end: String
-}
 

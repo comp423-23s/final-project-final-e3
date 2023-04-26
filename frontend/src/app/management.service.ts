@@ -14,4 +14,5 @@ export class ManagementService {
   {
     return this.http.delete<Room>(`/api/room/${roomName}`)
   }
+
 }

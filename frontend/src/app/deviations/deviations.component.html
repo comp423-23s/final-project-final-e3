@@ -1,0 +1,29 @@
+<div>
+    <form [formGroup] = "newDeviationsForm" (ngSubmit) = "onSubmit()">
+      <mat-card>
+          <mat-card-header>
+              <mat-card-title>Modify Schedule</mat-card-title>
+          </mat-card-header>
+          
+          <mat-card-content>
+            <p>
+                <label color = "white">Monday start time</label>
+                <input  id="new_start_time" type="time" placeholder="start time" formControlName="new_start_time">
+                <label color = "white">Monday end time</label>
+                <input  id = "new_end_timed" type="time" placeholder="end time" formControlName="new_end_time">
+        </p>
+            <p>
+                <mat-form-field appearance = "outline">
+                    <label color = "white">Time Interval</label>
+                    <input  id="new_time_interval" type="text" formControlName="new_time_interval">
+                </mat-form-field>
+            </p>
+            <p>
+                <button class="add-button" type="submit">Change time</button>
+            </p>
+        </mat-card-content>
+    
+          
+      </mat-card>
+    </form>
+</div>
