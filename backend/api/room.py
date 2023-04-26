@@ -15,7 +15,7 @@ def list_schedule(room_name: str, room_svc: RoomService = Depends()):
     return room_svc.list_schedule(room_name)
 
 @api.post("/edit/{room_name}", tags=["Room"])
-def edit_deviations(room_name: str, deviations: Dict[str,List[Tuple[str, str]]], room_svc: RoomService = Depends()):
+def edit_deviations(room_name: str, deviations: Dict[str, List[str]], room_svc: RoomService = Depends()):
     return room_svc.edit_deviations(room_name, deviations)
 
 @api.post("", tags=["Room"])

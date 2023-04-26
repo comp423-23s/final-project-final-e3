@@ -7,14 +7,18 @@
           
           <mat-card-content>
             <p>
-                <label color = "white">Monday start time</label>
+                <label color = "white">Date</label>
+                <input  id="modified_date" type="date" placeholder="start time" formControlName="modified_date">
+            </p>
+            <p>
+                <label color = "white">New Start Time</label>
                 <input  id="new_start_time" type="time" placeholder="start time" formControlName="new_start_time">
-                <label color = "white">Monday end time</label>
+                <label color = "white">New End Time</label>
                 <input  id = "new_end_timed" type="time" placeholder="end time" formControlName="new_end_time">
-        </p>
+            </p>
             <p>
                 <mat-form-field appearance = "outline">
-                    <label color = "white">Time Interval</label>
+                    <label color = "white">New Time Interval</label>
                     <input  id="new_time_interval" type="text" formControlName="new_time_interval">
                 </mat-form-field>
             </p>
