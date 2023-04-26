@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from ..models import Room, User
 from ..services import RoomService
 from typing import List, Dict, Tuple
@@ -15,12 +15,15 @@ def list_schedule(room_name: str, room_svc: RoomService = Depends()):
     return room_svc.list_schedule(room_name)
 
 @api.post("/edit/{room_name}", tags=["Room"])
-def edit_schedule(room_name: str, deviations: Dict[str,List[Tuple[str, str]]], room_svc: RoomService = Depends()):
-    return room_svc.edit_schedule(room_name, deviations)
+def edit_deviations(room_name: str, deviations: Dict[str,List[Tuple[str, str]]], room_svc: RoomService = Depends()):
+    return room_svc.edit_deviations(room_name, deviations)
 
 @api.post("", tags=["Room"])
 def add(room: Room, room_svc: RoomService = Depends()) -> None:
-    return room_svc.add(room)
+    try:
+        return room_svc.add(room)
+    except AssertionError:
+        raise HTTPException(status_code=400, detail="Bad room information")
 
 @api.delete("/{room_name}", tags=["Room"])
 def delete(room_name: str, room_svc: RoomService = Depends()) -> None:

@@ -12,7 +12,7 @@ class RoomEntity(EntityBase):
     name: Mapped[str] = mapped_column(String, primary_key=True)
     max_capacity: Mapped[int] = mapped_column(Integer)
     availability: Mapped[dict[str:list[str]]] = mapped_column(JSON)
-    deviations: Mapped[dict[str,list[tuple[str, str]]]] = mapped_column(JSON)
+    deviations: Mapped[dict[str,list[str]]] = mapped_column(JSON)
 
     @classmethod
     def from_model(cls, model: Room) -> Self:
