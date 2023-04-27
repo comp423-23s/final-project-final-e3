@@ -68,10 +68,6 @@ class RoomService:
         staff_entity = self._session.query(UserEntity).filter_by(pid=user_pid).one()
         staff = staff_entity.to_model()
         self._permission.enforce(staff, 'room.add', 'room/')
-        room_entity = RoomEntity.from_model(room)
-        self._session.add(room_entity)
-        self._session.commit()
-        return "room added successfully"
 
 
     def delete(self, user_pid: int, room_name: str) -> None:
@@ -84,3 +80,64 @@ class RoomService:
             return "Room not found"
         self._session.delete(room_to_delete)
         self._session.commit()
+        
+        
+    def edit_deviations(self, room_name, deviations) -> None:
+        room_entity = self._session.query(RoomEntity).filter_by(name=room_name).one()
+        room = room_entity.to_model()
+
+        # Does not change room's schedule, but does change rooms deviations list. 
+        room.deviations = deviations
+
+        self.delete(room.name)
+        self.add(room)
+    
+
+    def remove_expired_deviations(self, room_name, deviations, dates):
+        """Removes expired entries from a deviations dictionary. Returns new deviations dict."""
+        dates = [date.strftime(r"%m/%d") for date in dates]
+        to_delete_dates = []
+        for date_str in deviations:
+            if date_str not in dates:
+                to_delete_dates.append(date_str)
+       
+        if len(to_delete_dates) == 0:
+            return deviations
+        else:
+            for date in to_delete_dates:
+                del deviations[date]
+        
+        self.edit_deviations(room_name, deviations)
+        return deviations
+    
+
+    def list_schedule(self, room_id:str):
+        """Returns list of all available times slots for the next two weeks."""
+
+        room_entity = self._session.query(RoomEntity).filter_by(name=room_id).one()
+        room = room_entity.to_model()
+
+        schedule = {}
+
+        this_sun = get_sunday_of_week()
+        next_sat = get_saturday_of_next_week()
+        dates = list_dates_in_between(this_sun, next_sat)
+
+        # Remove expired deviations
+        deviations = room.deviations
+        deviations = self.remove_expired_deviations(room_id, deviations, dates)
+
+        # Generate time slots according to original schedule
+        for date in dates: 
+            try:
+                start, end, interval = room.deviations[date.strftime(r"%m/%d")]
+            except KeyError:
+                start, end, interval = room.availability[dow_mapping[date.weekday()]]
+            
+            start = datetime.strptime(start, "%H:%M")
+            end = datetime.strptime(end, "%H:%M")
+            interval = float(interval)
+
+            time_slots = list_time_slots(start, end, interval)
+            schedule[date.strftime(r"%m/%d")] = time_slots       
+        return schedule

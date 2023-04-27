@@ -1,0 +1,20 @@
+.active-reservations{
+    border:1px solid #000;
+    background-color:#545454;
+    padding: 50px;
+}
+
+.delete-reservation-button {
+    background-color: #b70000;
+    border: black;
+    color: white;
+    padding: 7px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+}
+.delete-reservation-button:hover {
+    background-color:#ec3131;
+    transition: 0.3s;
+}

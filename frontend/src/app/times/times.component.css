@@ -1,0 +1,23 @@
+.reservation-time {
+    background-color: #4786C6;
+    border: black;
+    color: white;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+}
+
+.reservation-time:hover {
+    background-color:#66aff9;
+    transition: 0.3s;
+}
+
+.time{
+
+    border:1px solid #000;
+    background-color:#545454;
+    padding: 50px;
+
+}
