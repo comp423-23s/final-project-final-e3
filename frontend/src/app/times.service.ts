@@ -26,7 +26,7 @@ export class TimesService {
 
   constructor(protected http: HttpClient) { }
 
-  getTimes(roomName: string | undefined) {
+  getTimes(roomName: string | null) {
     return this.http.get<AvailableTimes>(`/api/room/${roomName}`);
   }
 }

@@ -17,34 +17,10 @@
           <tr *ngFor="let room of rooms$ | async">
             <td>{{ room.name }}</td>
             <td>{{ room.max_capacity }}</td>
-            <a routerLink = "/times"><button class="availability" title = "check_availibility" (click)="setRoomName(room.name)">Availabile times</button></a>
+            <a [routerLink] = "['/times', room.name]" ><button class="availability" title = "check_availibility" (click)="setRoomName(room.name)">Availabile times</button></a>
           </tr>
        </tbody>
   </table>
 </div>
 
-<!-- <div>
-  <h1>Available Times</h1>
-  <table name="table" id="table">
-    <colgroup>
-        <col style="width:1000px">
-        <col style="width:1000px">
-    </colgroup>  
 
-      <thead>
-        <td>Date</td>
-        <td align="center">Times</td>
-      </thead>
-
-      <tbody>
-        <tr *ngFor="let date of times$ | async | keyvalue">
-          <td>{{ date.key }}</td>
-          <ul>
-            <td *ngFor="let time of date.value">
-              <button class="reservation-time" (click)="reserveRoom(time[0], time[1], date.key)">{{ time[0] }}-{{ time[1] }}</button>
-            </td>
-          </ul>
-        </tr>
-      </tbody>
-  </table>
-</div> -->

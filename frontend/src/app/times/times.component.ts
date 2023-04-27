@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Route } from '@angular/router';
+import { Route, ActivatedRoute } from '@angular/router';
 import { TimesService, Schedule, AvailableTimes } from '../times.service';
 import { Reservations, ReservationsService, Room } from '../reservations.service';
 import { Observable } from 'rxjs';
@@ -13,7 +13,7 @@ import { Profile, ProfileService } from '../profile/profile.service';
 })
 export class TimesComponent {
   public static Route: Route = {
-    path: 'times',
+    path: 'times/:roomName',
     component: TimesComponent, 
     title: 'Times', 
   };
@@ -21,11 +21,10 @@ export class TimesComponent {
   public times$: Observable<AvailableTimes> | undefined; 
   public profile$: Observable<Profile| undefined>;
   public pid: number|undefined;
-  public room_name: string|undefined;
+  public room_name: string | null;
 
-  constructor(private reservationService: ReservationsService, private timeService: TimesService, private profileService: ProfileService){
-    this.room_name = this.reservationService.getRoomName();
-    this.times$ = this.timeService.getTimes(this.room_name);
+  constructor(private reservationService: ReservationsService, private timeService: TimesService, private profileService: ProfileService, private route: ActivatedRoute){
+
     this.profile$ = this.profileService.profile$;
     this.profile$.subscribe(profile => {
       if(profile) {
@@ -35,6 +34,8 @@ export class TimesComponent {
         console.error("Profile does not exists")
       }
     })
+    this.room_name = this.route.snapshot.paramMap.get('roomName');
+    this.times$ = this.timeService.getTimes(this.room_name);
   }
 
 
@@ -54,6 +55,7 @@ export class TimesComponent {
 
   private onSuccess(reservation: Reservations) {
     window.alert("Your reservation has been added.");
+    window.location.reload();
   }
 
   private onError(err: any) {
