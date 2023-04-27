@@ -6,6 +6,7 @@ from sqlalchemy.orm import Session
 from ..database import db_session
 from ..models import Room, User
 from ..entities import RoomEntity, UserEntity, RoleEntity
+from .permission import PermissionService
 from datetime import datetime, timedelta
 
 days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
@@ -14,7 +15,6 @@ dow_mapping = {}
 for idx,day in enumerate(days_of_week):
     dow_mapping[idx] = day
     dow_mapping[day] = idx
-
 
 def get_sunday_of_week() -> datetime:
     today = datetime.today()
@@ -49,9 +49,11 @@ def list_time_slots(start: datetime, end: datetime ,interval: float) -> list[tup
 class RoomService:
 
     _session: Session
+    _permission: PermissionService
 
-    def __init__(self, session: Session = Depends(db_session)):
+    def __init__(self, session: Session = Depends(db_session), permission: PermissionService = Depends()):
         self._session = session
+        self._permission = permission
 
 
     def list(self) -> list[Room]:
@@ -61,16 +63,22 @@ class RoomService:
         return [room_entity.to_model() for room_entity in room_entities]
 
 
-    def add(self, room: Room) -> None:
-        """Add room into database"""
+    def add(self, user_pid: int, room: Room) -> None:
+        """Staff could add a new room into database"""
+        staff_entity = self._session.query(UserEntity).filter_by(pid=user_pid).one()
+        staff = staff_entity.to_model()
+        self._permission.enforce(staff, 'room.add', 'room/')
         room_entity = RoomEntity.from_model(room)
         self._session.add(room_entity)
         self._session.commit()
         return "room added successfully"
 
 
-    def delete(self, room_name: str) -> None:
-        """Delete a room specified by name from database"""
+    def delete(self, user_pid: int, room_name: str) -> None:
+        """Staff could delete a room specified by name from database"""
+        staff_entity = self._session.query(UserEntity).filter_by(pid=user_pid).one()
+        staff = staff_entity.to_model()
+        self._permission.enforce(staff, 'room.delete', 'room/')
         room_to_delete = self._session.query(RoomEntity).filter_by(name=room_name).one()
         if room_to_delete is None:
             return "Room not found"

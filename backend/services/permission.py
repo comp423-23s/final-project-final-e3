@@ -113,3 +113,4 @@ class PermissionService:
     def _expand_pattern(self, pattern: str) -> re.Pattern:
         search = pattern.replace('*', '.*')
         return re.compile(f'^{search}$')
+        
