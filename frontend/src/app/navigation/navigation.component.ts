@@ -85,4 +85,8 @@ export class NavigationComponent implements OnInit, OnDestroy {
         .subscribe(isHandset => this.isHandset = isHandset);
   }
 
+  getPID(){
+    return this.pid;
+  }
+
 }
