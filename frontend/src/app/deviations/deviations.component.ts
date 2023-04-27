@@ -22,16 +22,17 @@ export class DeviationsComponent {
 
   public room_name: string|undefined;
 
-  public newDeviationsForm = this.formBuilder.group({
-    modified_date: '',
-    new_start_time: '',
-    new_end_time: '',
-    new_time_interval: '',
-  });
+  public newDeviationsForm;
 
 
   constructor(protected formBuilder: FormBuilder, protected reservationService: ReservationsService, protected addRoomService: AddRoomService) {
     this.room_name = this.reservationService.getRoomName();
+    this.newDeviationsForm = this.formBuilder.group({
+      modified_date: ['', Validators.required],
+      new_start_time: ['', Validators.required],
+      new_end_time: ['', Validators.required],
+      new_time_interval: ['', Validators.required],
+    });
   }
 
   onSubmit(): void {
@@ -45,9 +46,6 @@ export class DeviationsComponent {
     let start_time = form.new_start_time ?? "";
     let end_time = form.new_end_time ?? "";
     let time_interval = form.new_time_interval ?? "";
-    console.log(this.room_name)
-    console.log(modified_date)
-    console.log(final_date)
 
     let new_deviations: Deviations = {[final_date]: [start_time, end_time, time_interval]}
 

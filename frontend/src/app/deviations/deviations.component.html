@@ -8,22 +8,22 @@
           <mat-card-content>
             <p>
                 <label color = "white">Date</label>
-                <input  id="modified_date" type="date" placeholder="start time" formControlName="modified_date">
+                <input  id="modified_date" type="date" placeholder="start time" formControlName="modified_date" required>
             </p>
             <p>
                 <label color = "white">New Start Time</label>
-                <input  id="new_start_time" type="time" placeholder="start time" formControlName="new_start_time">
+                <input  id="new_start_time" type="time" placeholder="start time" formControlName="new_start_time" required>
                 <label color = "white">New End Time</label>
-                <input  id = "new_end_timed" type="time" placeholder="end time" formControlName="new_end_time">
+                <input  id = "new_end_timed" type="time" placeholder="end time" formControlName="new_end_time" required>
             </p>
             <p>
                 <mat-form-field appearance = "outline">
                     <label color = "white">New Time Interval</label>
-                    <input  id="new_time_interval" type="text" formControlName="new_time_interval">
+                    <input  id="new_time_interval" type="text" formControlName="new_time_interval" required>
                 </mat-form-field>
             </p>
             <p>
-                <button class="add-button" type="submit">Change time</button>
+                <input class="add-button" type="submit" [disabled]="newDeviationsForm.invalid">
             </p>
         </mat-card-content>
     

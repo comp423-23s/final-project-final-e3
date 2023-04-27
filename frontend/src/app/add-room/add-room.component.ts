@@ -41,24 +41,6 @@ export class AddRoomComponent{
       sunday_end: ['', Validators.required],
       time_interval: ['', Validators.required],
     });
-    // const form = this.newRoomForm;
-    // form.get('room_name')?.addValidators(Validators.required);
-    // form.get('room_capacity')?.addValidators(Validators.required);
-    // form.get('monday_start')?.addValidators(Validators.required);
-    // form.get('monday_end')?.addValidators(Validators.required);
-    // form.get('tuesday_start')?.addValidators(Validators.required);
-    // form.get('tuesday_end')?.addValidators(Validators.required);
-    // form.get('wednesday_start')?.addValidators(Validators.required);
-    // form.get('wednesday_end')?.addValidators(Validators.required);
-    // form.get('thursday_start')?.addValidators(Validators.required);
-    // form.get('thursday_end')?.addValidators(Validators.required);
-    // form.get('friday_start')?.addValidators(Validators.required);
-    // form.get('friday_end')?.addValidators(Validators.required);
-    // form.get('saturday_start')?.addValidators(Validators.required);
-    // form.get('saturday_end')?.addValidators(Validators.required);
-    // form.get('sunday_start')?.addValidators(Validators.required);
-    // form.get('sunday_end')?.addValidators(Validators.required);
-    // form.get('time_interval')?.addValidators(Validators.required);
   }
 
   onSubmit(): void {
