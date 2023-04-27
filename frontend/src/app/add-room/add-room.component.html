@@ -9,13 +9,13 @@
             <p>
                 <mat-form-field appearance = "outline">
                     <label  color = "white">Room Name</label>
-                    <input  id="room_name" type="text" formControlName="room_name">
+                    <input  id="room_name" type="text" formControlName="room_name" required>
                 </mat-form-field>
             </p>
             <p>
                 <mat-form-field appearance = "fill">
                     <label  color = "white">Room Capacity</label>
-                    <input id="capacity" type="number" formControlName="room_capacity">
+                    <input id="capacity" type="number" formControlName="room_capacity" required>
                 </mat-form-field>
             </p>
             <p>
@@ -69,7 +69,7 @@
                 </mat-form-field>
             </p>
             <p>
-                <button class="add-button" type="submit">Add Room</button>
+                <button mat-raised-button type="submit" [disabled]="newRoomForm.invalid">Add Room</button>
             </p>
         </mat-card-content>
     
