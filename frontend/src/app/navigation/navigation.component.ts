@@ -27,6 +27,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
   public profile$: Observable<Profile | undefined>;
   public checkinPermission$: Observable<boolean>;
   public adminPermission$: Observable<boolean>;
+  public pid: number | undefined;
 
   constructor(
     public auth: AuthenticationService,
@@ -39,7 +40,14 @@ export class NavigationComponent implements OnInit, OnDestroy {
     protected errorDialog: MatDialog
   ) {
     this.profile$ = profileService.profile$;
-    //this.reservations$ = reservationsService.reservations$;
+    this.profile$.subscribe(profile => {
+      if(profile) {
+        console.log(profile.pid);
+        this.pid = profile.pid
+      } else {
+        console.error("Profile does not exists")
+      }
+    })
     this.checkinPermission$ = this.permission.check('checkin.create', 'checkin/');
     this.adminPermission$ = this.permission.check('admin.view', 'admin/')
   }

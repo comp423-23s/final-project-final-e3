@@ -6,6 +6,7 @@ import { Reservations } from '../reservations.service';
 import { StaffService } from '../staff.service';
 import { ProfileService, Profile } from '../profile/profile.service';
 
+
 @Component({
   selector: 'app-myreservations',
   templateUrl: './myreservations.component.html',
@@ -13,7 +14,7 @@ import { ProfileService, Profile } from '../profile/profile.service';
 })
 export class MyreservationsComponent {
   public static Route: Route = {
-    path: 'myreservations',
+    path: 'myreservations/:pid',
     component: MyreservationsComponent, 
     title: 'My Reservations', 
     canActivate: [isAuthenticated], 
