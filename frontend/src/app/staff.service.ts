@@ -21,5 +21,3 @@ export class StaffService {
     return this.http.delete<Reservations>(`/api/reserve/${reservation_id}`)
   }
 }
-
-
