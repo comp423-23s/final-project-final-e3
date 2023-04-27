@@ -17,7 +17,11 @@ export class StaffService {
     return this.http.get<Reservations[]>(`/api/reserve/${pid}`)
   }
 
-  deleteReservation(id: String) {
-    return this.http.delete<Reservations>(`/api/reserve/${id}`)
-  }
+
+//   deleteMyReservatoin(reservation_id: string): Observable<Reservations>
+//   {
+//     return this.http.delete<Reservations>(`/api/reserve/${reservation_id}`)
+//   }
 }
+
+

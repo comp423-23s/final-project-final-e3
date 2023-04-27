@@ -19,12 +19,15 @@ def edit_deviations(room_name: str, deviations: Dict[str, List[str]], room_svc: 
     return room_svc.edit_deviations(room_name, deviations)
 
 @api.post("", tags=["Room"])
-def add(room: Room, room_svc: RoomService = Depends()) -> None:
+def add(user_pid: int, room: Room, room_svc: RoomService = Depends()) -> None:
     try:
         return room_svc.add(room)
-    except AssertionError:
-        raise HTTPException(status_code=400, detail="Bad room information")
+    except UserPermissionError:
+        raise HTTPException(status_code=400, detail="Not authorized to perform this action")
 
 @api.delete("/{room_name}", tags=["Room"])
-def delete(room_name: str, room_svc: RoomService = Depends()) -> None:
-    return room_svc.delete(room_name)
+def delete(user_pid: int, room_name: str, room_svc: RoomService = Depends()) -> None:
+    try:
+        room_svc.delete(user_pid, room_name)
+    except UserPermissionError:
+        raise HTTPException(status_code=400, detail="Not authorized to perform this action")

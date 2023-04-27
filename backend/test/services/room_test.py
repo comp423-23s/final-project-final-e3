@@ -37,6 +37,9 @@ room1 = Room(name="A1", max_capacity=3, availability=availability1, deviations=d
 room2 = Room(name="A2", max_capacity=5, availability=availability2, deviations=deviation2)
 
 
+# Mock users
+
+
 @pytest.fixture(autouse=True)
 def setup(test_session: Session):
     room1_entity = RoomEntity.from_model(room1)
