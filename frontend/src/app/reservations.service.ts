@@ -13,7 +13,7 @@ export interface Room {
 };
 
 export interface Reservations {
-  identifier_id: String
+  identifier_id: string
   pid: number | undefined
   subject_name: string | null
   start: String
@@ -35,7 +35,7 @@ export class ReservationsService {
       return this.http.get<Room[]>("/api/room");
     }
 
-    addReservation(identifier_id: String, roomName: string | null, pid: number | undefined, start_time: String, end_time: String) : Observable<Reservations>{
+    addReservation(identifier_id: string, roomName: string | null, pid: number | undefined, start_time: String, end_time: String) : Observable<Reservations>{
       let reserve: Reservations = {identifier_id: identifier_id, pid: pid, subject_name: roomName, start: start_time, end: end_time}
       return this.http.post<Reservations>("/api/reserve", reserve)
     }

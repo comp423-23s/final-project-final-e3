@@ -43,8 +43,8 @@ export class MyreservationsComponent {
     this.reservations$ = this.staffService.listUserReservations(this.pid);
   }
 
-  deleteMyReservation(id: String) {
-    this.staffService.deleteReservation(id).subscribe( {
+  deleteMyReservation(id: string) {
+    this.staffService.deleteMyReservation(id).subscribe( {
       next: (reservations) => this.onSuccess(reservations)
     });
   }
