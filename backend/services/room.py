@@ -69,6 +69,11 @@ class RoomService:
         staff = staff_entity.to_model()
         self._permission.enforce(staff, 'room.add', 'room/')
 
+        room_entity = RoomEntity.from_model(room)
+        self._session.add(room_entity)
+        self._session.commit()
+        return
+
 
     def delete(self, user_pid: int, room_name: str) -> None:
         """Staff could delete a room specified by name from database"""
@@ -80,6 +85,7 @@ class RoomService:
             return "Room not found"
         self._session.delete(room_to_delete)
         self._session.commit()
+        return
         
         
     def edit_deviations(self, room_name, deviations) -> None:

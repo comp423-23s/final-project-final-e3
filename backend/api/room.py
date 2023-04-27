@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from ..models import Room, User
-from ..services import RoomService
+from ..services import RoomService, UserPermissionError
 from typing import List, Dict, Tuple
 
 api = APIRouter(prefix="/api/room")
@@ -21,7 +21,7 @@ def edit_deviations(room_name: str, deviations: Dict[str, List[str]], room_svc: 
 @api.post("", tags=["Room"])
 def add(user_pid: int, room: Room, room_svc: RoomService = Depends()) -> None:
     try:
-        return room_svc.add(room)
+        return room_svc.add(user_pid, room)
     except UserPermissionError:
         raise HTTPException(status_code=400, detail="Not authorized to perform this action")
 
