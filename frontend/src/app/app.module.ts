@@ -39,6 +39,7 @@ import { ManagementComponent } from './management/management.component';
 import { AddRoomComponent } from './add-room/add-room.component';
 import { StaffComponent } from './staff/staff.component';
 import { MyreservationsComponent } from './myreservations/myreservations.component';
+import { DeviationsComponent } from './deviations/deviations.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { MyreservationsComponent } from './myreservations/myreservations.compone
     ManagementComponent,
     AddRoomComponent,
     StaffComponent,
-    MyreservationsComponent
+    MyreservationsComponent,
+    DeviationsComponent
   ],
   imports: [
     BrowserModule,

@@ -7,4 +7,4 @@ class Room(BaseModel):
     name: str
     max_capacity: int
     availability: Dict[str,List[str]]
-    deviations: Dict[str, List[Tuple[str, str]]]
+    deviations: Dict[str, List[str]]

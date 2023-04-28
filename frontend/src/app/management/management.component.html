@@ -10,6 +10,7 @@
           <thead>
             <td>Room Name</td>
             <td>Max_Capacity</td>
+            <td>Modify</td>
             <td>Manage</td>
           </thead>
 
@@ -18,6 +19,7 @@
           <tr *ngFor="let room of rooms$ | async">
             <td>{{ room.name }}</td>
             <td>{{ room.max_capacity }}</td>
+            <a routerLink = "/deviations"><td><button class="modify-button" type="submit" (click)="setRoomName(room.name)">Modify</button></td></a>
             <td><button class="delete-button" type="submit" (click)="onClick(room.name)">Delete</button></td>
         </tr>
  

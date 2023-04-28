@@ -17,7 +17,10 @@
 
           <mat-divider></mat-divider>
           <a mat-list-item routerLink="/reservations">Reservations</a>
-          <a mat-list-item routerLink="/myreservations">My Reservations</a>
+          <div *ngIf="profile$ | async as user">
+            <a mat-list-item [routerLink]="['/myreservations', user.pid]">My Reservations</a>
+          </div>
+          
           <a mat-list-item routerLink="/profile">Profile</a>
           <a mat-list-item (click)="auth.signOut()">Sign out</a>
         </ng-template>
