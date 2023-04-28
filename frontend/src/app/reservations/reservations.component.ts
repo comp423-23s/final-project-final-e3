@@ -6,7 +6,6 @@ import{ Reservations, ReservationsService, Room } from 'src/app/reservations.ser
 import { AvailableTimes, Schedule, TimesService } from '../times.service';
 import { HttpClient } from '@angular/common/http';
 
-import * as crypto from 'crypto-ts';
 import { Profile, ProfileService } from '../profile/profile.service';
 const SHA256 = require("crypto-ts").SHA256;
 
