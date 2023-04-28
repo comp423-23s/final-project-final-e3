@@ -1,33 +1,32 @@
-<div>
+<div class="modify">
     <form [formGroup] = "newDeviationsForm" (ngSubmit) = "onSubmit()">
-      <mat-card>
+        <h1>Modify Schedule</h1>
           <mat-card-header>
-              <mat-card-title>Modify Schedule</mat-card-title>
+
           </mat-card-header>
           
           <mat-card-content>
             <p>
-                <label color = "white">Date</label>
-                <input  id="modified_date" type="date" placeholder="start time" formControlName="modified_date" required>
+                <label color = "white">Date</label><br>
+                <input class="input" id="modified_date" type="date" placeholder="start time" formControlName="modified_date" required>
             </p>
             <p>
-                <label color = "white">New Start Time</label>
-                <input  id="new_start_time" type="time" placeholder="start time" formControlName="new_start_time" required>
-                <label color = "white">New End Time</label>
-                <input  id = "new_end_timed" type="time" placeholder="end time" formControlName="new_end_time" required>
+                <label color = "white">New Start Time</label><br>
+                <input class="input" id="new_start_time" type="time" placeholder="start time" formControlName="new_start_time" required>
             </p>
             <p>
-                <mat-form-field appearance = "outline">
-                    <label color = "white">New Time Interval</label>
-                    <input  id="new_time_interval" type="text" formControlName="new_time_interval" required>
-                </mat-form-field>
+                <label color = "white">New End Time</label><br>
+                <input class="input" id = "new_end_timed" type="time" placeholder="end time" formControlName="new_end_time" required>
             </p>
             <p>
-                <input class="add-button" type="submit" [disabled]="newDeviationsForm.invalid">
+                <label color = "white">New Time Interval</label><br>
+                <input class="input" id="new_time_interval" type="text" formControlName="new_time_interval" required>
+            </p>
+            <p>
+                <input class="submit-button" type="submit" [disabled]="newDeviationsForm.invalid">
             </p>
         </mat-card-content>
     
           
-      </mat-card>
     </form>
 </div>

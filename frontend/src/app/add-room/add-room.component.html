@@ -1,80 +1,66 @@
-<div>
+<div class="add-room-form">
     <form [formGroup] = "newRoomForm" (ngSubmit) = "onSubmit()">
-      <mat-card>
-          <mat-card-header>
-              <mat-card-title>Add Rooms</mat-card-title>
-          </mat-card-header>
+            <h1>Add Rooms</h1>
           
-          <mat-card-content>
             <p>
-                <mat-form-field appearance = "outline">
-                    <label  color = "white">Room Name</label>
-                    <input  id="room_name" type="text" formControlName="room_name" required>
-                </mat-form-field>
+                    <label  color = "white">Room Name</label><br>
+                    <input class="input"  id="room_name" type="text" formControlName="room_name" required>
             </p>
             <p>
-                <mat-form-field appearance = "fill">
-                    <label  color = "white">Room Capacity</label>
-                    <input id="capacity" type="number" formControlName="room_capacity" required>
-                </mat-form-field>
+                    <label  color = "white">Room Capacity</label><br>
+                    <input class="input" id="capacity" type="number" formControlName="room_capacity" required>
             </p>
             <p>
-                    <label color = "white">Monday start time</label>
-                    <input  id="monday_start" type="time" placeholder="start time" formControlName="monday_start" required>
-                    <label color = "white">Monday end time</label>
-                    <input  id = "monday_end" type="time" placeholder="end time" formControlName="monday_end" required>
+                    <label color = "white">Monday start time</label><br>
+                    <input class="input" id="monday_start" type="time" placeholder="start time" formControlName="monday_start" required><br>
+                    <label color = "white">Monday end time</label><br>
+                    <input class="input" id = "monday_end" type="time" placeholder="end time" formControlName="monday_end" required>
             </p>
             <p>
-                    <label color = "white">Tuesday start time</label>
-                    <input  id="tuesday_start" type="time" placeholder="start time" formControlName="tuesday_start" required>
-                    <label color = "white">Tuesday end time</label>
-                    <input  id="tuesday_end" type="time" placeholder="end time" formControlName="tuesday_end" required>
+                    <label color = "white">Tuesday start time</label><br>
+                    <input class="input" id="tuesday_start" type="time" placeholder="start time" formControlName="tuesday_start" required><br>
+                    <label color = "white">Tuesday end time</label><br>
+                    <input class="input" id="tuesday_end" type="time" placeholder="end time" formControlName="tuesday_end" required>
             </p>
             
             <p>
-                    <label color = "white">Wednesday start time</label>
-                    <input  id="wednesday_start" type="time" placeholder="start time" formControlName="wednesday_start" required>
-                    <label color = "white">Tuesday end time</label>
-                    <input  id="wednesday_end" type="time" placeholder="end time" formControlName="wednesday_end" required>
+                    <label color = "white">Wednesday start time</label><br>
+                    <input class="input" id="wednesday_start" type="time" placeholder="start time" formControlName="wednesday_start" required><br>
+                    <label color = "white">Wednesday end time</label><br>
+                    <input class="input" id="wednesday_end" type="time" placeholder="end time" formControlName="wednesday_end" required>
             </p>
             <p>
-                    <label color = "white">Thursday start time</label>
-                    <input  id="thursday_start" type="time" placeholder="start time" formControlName="thursday_start" required>
-                    <label color = "white">Thursday end time</label>
-                    <input  id="thursday_end" type="time" placeholder="end time" formControlName="thursday_end" required>
+                    <label color = "white">Thursday start time</label><br>
+                    <input class="input" id="thursday_start" type="time" placeholder="start time" formControlName="thursday_start" required><br>
+                    <label color = "white">Thursday end time</label><br>
+                    <input class="input" id="thursday_end" type="time" placeholder="end time" formControlName="thursday_end" required>
             </p>
             <p>
-                    <label color = "white">Friday start time</label>
-                    <input  id="friday_start" type="time" placeholder="start time" formControlName="friday_start" required>
-                    <label color = "white">Friday end time</label>
-                    <input  id="friday_end" type="time" placeholder="end time" formControlName="friday_end" required>
+                    <label color = "white">Friday start time</label><br>
+                    <input class="input" id="friday_start" type="time" placeholder="start time" formControlName="friday_start" required><br>
+                    <label color = "white">Friday end time</label><br>
+                    <input class="input" id="friday_end" type="time" placeholder="end time" formControlName="friday_end" required>
             </p>
             <p>
-                    <label color = "white">Saturday start time</label>
-                    <input  id = "saturday_start" type="time" placeholder="start time" formControlName="saturday_start" required>
-                    <label color = "white">Saturday end time</label>
-                    <input  id = "saturday_end" type="time" placeholder="end time" formControlName="saturday_end" required>
+                    <label color = "white">Saturday start time</label><br>
+                    <input class="input" id = "saturday_start" type="time" placeholder="start time" formControlName="saturday_start" required><br>
+                    <label color = "white">Saturday end time</label><br>
+                    <input class="input" id = "saturday_end" type="time" placeholder="end time" formControlName="saturday_end" required>
             </p>
 
             <p>
-                    <label color = "white">Sunday start time</label>
-                    <input  id = "sunday_start" type="time" placeholder="start time" formControlName="sunday_start" required>
-                    <label color = "white">Sunday end time</label>
-                    <input  id = "sunday_end" type="time" placeholder="end time" formControlName="sunday_end" required>
+                    <label color = "white">Sunday start time</label><br>
+                    <input class="input" id = "sunday_start" type="time" placeholder="start time" formControlName="sunday_start" required><br>
+                    <label color = "white">Sunday end time</label><br>
+                    <input class="input" id = "sunday_end" type="time" placeholder="end time" formControlName="sunday_end" required>
             </p>
             <p>
-                <mat-form-field appearance = "outline">
-                    <label color = "white">Time Interval</label>
-                    <input  id="time_interval" type="text" formControlName="room_name" formControlName="time_interval" required>
-                </mat-form-field>
+                    <label color = "white">Time Interval</label><br>
+                    <input class="input" id="time_interval" type="text" formControlName="room_name" formControlName="time_interval" required>
             </p>
             <p>
-                <input type="submit" [disabled]="newRoomForm.invalid">
+                <input class="submit-button" type="submit" [disabled]="newRoomForm.invalid">
             </p>
-        </mat-card-content>
-    
-          
-      </mat-card>
-    </form>
+        </form>
 </div>
 
