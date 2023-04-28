@@ -10,7 +10,7 @@ from ..entities import RoomEntity, UserEntity, RoleEntity, ReservationEntity
 from .permission import PermissionService
 from .reservation import ReservationService
 from datetime import datetime, timedelta
-
+from sqlalchemy import exc
 days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 dow_mapping = {}
 
@@ -72,8 +72,11 @@ class RoomService:
         self._permission.enforce(staff, 'room.add', 'room/')
 
         room_entity = RoomEntity.from_model(room)
-        self._session.add(room_entity)
-        self._session.commit()
+        try: 
+            self._session.add(room_entity)
+            self._session.commit()
+        except exc.SQLAlchemyError:
+            print("Duplicate Room Error");
         return
 
 
