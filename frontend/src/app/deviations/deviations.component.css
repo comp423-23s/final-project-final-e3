@@ -1,0 +1,25 @@
+.submit-button {
+    background-color: #429800;
+    border: black;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+}
+.submit-button:disabled {
+    background-color: gray;
+}
+
+.modify{
+    border:1px solid #000;
+    background-color:#545454;
+    padding: 50px;
+
+}
+
+.input {
+    height: 20px;
+    width: 120px;
+}

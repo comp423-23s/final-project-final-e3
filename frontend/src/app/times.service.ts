@@ -14,6 +14,10 @@ export interface Schedule {
   Saturday: string[];
 }
 
+export interface AvailableTimes {
+  [date: string]: Array<[startTime: string, endTime: string]>;
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -22,11 +26,9 @@ export class TimesService {
 
   constructor(protected http: HttpClient) { }
 
-  getTimes(roomName: string) {
+  getTimes(roomName: string | null) {
     return this.http.get<AvailableTimes>(`/api/room/${roomName}`);
   }
 }
 
-export interface AvailableTimes {
-  [date: string]: Array<[startTime: string, endTime: string]>;
-}
+

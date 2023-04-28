@@ -9,15 +9,19 @@
     background-color: #b70000;
     border: black;
     color: white;
-    padding: 10px 22px;
+    padding: 7px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 14px;
+}
+.delete-button:hover {
+    background-color:#ec3131;
+    transition: 0.3s;
 }
 
 .add-button {
-    background-color: #52bc00;
+    background-color: #429800;
     border: black;
     color: white;
     padding: 10px 25px;
@@ -26,4 +30,22 @@
     display: inline-block;
     font-size: 15px;
 }
+.add-button:hover {
+    background-color:#52bc00;
+    transition: 0.3s;
+}
 
+.modify-button {
+    background-color: #4786C6;
+    border: black;
+    color: white;
+    padding: 7px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+}
+.modify-button:hover {
+    background-color:#66aff9;
+    transition: 0.3s;
+}
