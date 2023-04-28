@@ -19,11 +19,3 @@ def add(reservation: Reservation, reserve_svc: ReservationService = Depends()) -
 @api.delete("/{reservation_id}", tags=['Reservation'])
 def delete(reservation_id: str, reserve_svc: ReservationService = Depends()) -> None:
     return reserve_svc.delete(reservation_id)
-
-@api.delete("/{reservation_id}", tags=['Reservation'])
-def delete(reservation_id: str, reserve_svc: ReservationService = Depends()) -> None:
-    return reserve_svc.delete(reservation_id)
-@api.post("", tags=['Reservation'])
-def add(reservation: Reservation, reserve_svc: ReservationService = Depends()) -> None:
-    return reserve_svc.add(reservation)
-
