@@ -15,8 +15,8 @@ def list_schedule(room_name: str, room_svc: RoomService = Depends()):
     return room_svc.list_schedule(room_name)
 
 @api.post("/edit/{room_name}", tags=["Room"])
-def edit_deviations(room_name: str, deviations: Dict[str, List[str]], room_svc: RoomService = Depends()):
-    return room_svc.edit_deviations(room_name, deviations)
+def edit_deviations(user_pid: int, room_name: str, deviations: Dict[str, List[str]], room_svc: RoomService = Depends()):
+    return room_svc.edit_deviations(user_pid, room_name, deviations)
 
 @api.post("", tags=["Room"])
 def add(user_pid: int, room: Room, room_svc: RoomService = Depends()) -> None:

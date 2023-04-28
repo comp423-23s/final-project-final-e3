@@ -37,7 +37,8 @@ export class AddRoomService {
   }
   
   modify_room(room_name: string | undefined, deviations: Deviations){
-    return this.http.post<Room>(`/api/room/edit/${room_name}`, deviations)
+    let params = new HttpParams().set('user_pid', this.pid)
+    return this.http.post<Room>(`/api/room/edit/${room_name}`, deviations, {params:params})
   }
   
 }

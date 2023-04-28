@@ -1,12 +1,14 @@
 """Room services managing and changing rooms and their availability schedules"""
 
+import json
 from fastapi import Depends
-from sqlalchemy import select, or_, func
+from sqlalchemy import select, or_, func, update
 from sqlalchemy.orm import Session
 from ..database import db_session
 from ..models import Room, User
-from ..entities import RoomEntity, UserEntity, RoleEntity
+from ..entities import RoomEntity, UserEntity, RoleEntity, ReservationEntity
 from .permission import PermissionService
+from .reservation import ReservationService
 from datetime import datetime, timedelta
 
 days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
@@ -80,23 +82,39 @@ class RoomService:
         staff_entity = self._session.query(UserEntity).filter_by(pid=user_pid).one()
         staff = staff_entity.to_model()
         self._permission.enforce(staff, 'room.delete', 'room/')
+
+        # Delete room
         room_to_delete = self._session.query(RoomEntity).filter_by(name=room_name).one()
         if room_to_delete is None:
             return "Room not found"
         self._session.delete(room_to_delete)
+
+        # Delete all reservations associated with room
+        statement = select(ReservationEntity)
+        reservation_entities = self._session.execute(statement).scalars()
+        room_reservations_ids = [reservation_entity.to_model().identifier_id for reservation_entity in reservation_entities if reservation_entity.subject_name==room_name]
+        for id in room_reservations_ids:
+            reservation_to_delete = self._session.query(ReservationEntity).filter_by(identifier_id=id).one()
+            self._session.delete(reservation_to_delete)
         self._session.commit()
         return
         
         
-    def edit_deviations(self, room_name, deviations) -> None:
+    def edit_deviations(self, user_pid, room_name, deviations) -> None:
+        staff_entity = self._session.query(UserEntity).filter_by(pid=user_pid).one()
+        staff = staff_entity.to_model()
+        self._permission.enforce(staff, 'room.delete', 'room/')
+
         room_entity = self._session.query(RoomEntity).filter_by(name=room_name).one()
         room = room_entity.to_model()
 
         # Does not change room's schedule, but does change rooms deviations list. 
         room.deviations = deviations
 
-        self.delete(room.name)
-        self.add(room)
+        #self._session.query(RoomEntity).filter_by(name=room_name).one().update({RoomEntity.deviations:deviations}, synchronize_session=False)
+        room_entity.deviations = json.dumps(deviations)
+        self._session.commit()
+        return
     
 
     def remove_expired_deviations(self, room_name, deviations, dates):
@@ -113,7 +131,15 @@ class RoomService:
             for date in to_delete_dates:
                 del deviations[date]
         
-        self.edit_deviations(room_name, deviations)
+        # Same functionality as edit, bypass PID check since internal function.  
+        room_entity = self._session.query(RoomEntity).filter_by(name=room_name).one()
+        room = room_entity.to_model()
+        room.deviations = deviations
+
+        # Update database
+        #self._session.query(RoomEntity).filter_by(name=room_name).one().update({RoomEntity.deviations:deviations}, synchronize_session=False)
+        room_entity.deviations = json.dumps(deviations)
+        self._session.commit()
         return deviations
     
 
@@ -122,6 +148,19 @@ class RoomService:
 
         room_entity = self._session.query(RoomEntity).filter_by(name=room_id).one()
         room = room_entity.to_model()
+
+        # Get all reserved slots for room
+        statement = select(ReservationEntity)
+        reservation_entities = self._session.execute(statement).scalars()
+        room_reservations = [reservation_entity.to_model() for reservation_entity in reservation_entities if reservation_entity.subject_name==room_id]
+
+        reservations = {}
+        for reservation in room_reservations:
+            start_time, start_date = reservation.start.split("-")
+            if start_date in reservations:
+                reservations[start_date].append(start_time)
+            else:
+                reservations[start_date] = [start_time]
 
         schedule = {}
 
@@ -145,5 +184,18 @@ class RoomService:
             interval = float(interval)
 
             time_slots = list_time_slots(start, end, interval)
-            schedule[date.strftime(r"%m/%d")] = time_slots       
+
+            # Check if slot has been reserved
+            date_str = date.strftime(r"%m/%d")
+            try:
+                assert date_str in reservations
+                for slot in time_slots:
+                    slot_start = slot[0]
+                    if not slot_start in reservations[date_str]:
+                        if date_str in schedule:
+                            schedule[date_str].append(slot)
+                        else:
+                            schedule[date_str] = [slot]
+            except AssertionError: # No reservations for date
+                schedule[date_str] = time_slots       
         return schedule
