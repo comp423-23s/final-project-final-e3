@@ -7,7 +7,6 @@ import { AvailableTimes, Schedule, TimesService } from '../times.service';
 import { HttpClient } from '@angular/common/http';
 
 import { Profile, ProfileService } from '../profile/profile.service';
-const SHA256 = require("crypto-ts").SHA256;
 
 @Component({
   selector: 'app-reservations',
