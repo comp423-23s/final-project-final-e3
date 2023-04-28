@@ -30,7 +30,6 @@ class EquipmentService:
         self._session.commit()
         return "Equipment added successfully"
     
-
     def delete(self, equipment_name: str):
         """Staff deletes an equipment specified by name from database"""
         equipment_to_delete = self._session.query(EquipmentEntity).filter_by(name=equipment_name).one()

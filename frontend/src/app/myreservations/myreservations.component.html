@@ -1,6 +1,4 @@
-<button (click)="getPID()">Check Reservations</button>
-
-<div>
+<div class="active-reservations">
     <h1>Active Reservations</h1>
     <table name="table" id="table">
       <colgroup>
@@ -11,13 +9,14 @@
         <thead>
           <td>Room</td>
           <td>Time Reserved</td>
+          <td>Manage</td>
         </thead>
 
         <tbody>
             <tr *ngFor="let reservations of reservations$ | async">
                 <td>{{ reservations.subject_name}}</td>
                 <td>{{ reservations.start}} - {{ reservations.end }}</td>
-                <td><button (click)="deleteMyReservation(reservations.identifier_id)">Delete</button></td>
+                <td><button class="delete-reservation-button" (click)="deleteMyReservation(reservations.identifier_id)">Delete</button></td>
             </tr>
         </tbody>
   

@@ -3,9 +3,7 @@ import { ActivatedRoute, Route } from '@angular/router';
 import { Observable } from 'rxjs';
 import { isAuthenticated } from '../gate/gate.guard';
 import { ReservationsService, Room } from '../reservations.service';
-import { ReservationsComponent } from '../reservations/reservations.component';
-import { ManagementService } from '../management.service';
-import { Form, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { AddRoomService } from '../add-room.service';
 import { Schedule } from '../times.service';
 
@@ -21,29 +19,29 @@ export class AddRoomComponent{
     title: 'add-room',  
   };
 
-  public newRoomForm = this.formBuilder.group({
-    room_name: '',
-    room_capacity: '',
-    monday_start: '',
-    monday_end: '',
-    tuesday_start: '',
-    tuesday_end: '',
-    wednesday_start: '',
-    wednesday_end: '',
-    thursday_start: '',
-    thursday_end: '',
-    friday_start: '',
-    friday_end: '',
-    saturday_start: '',
-    saturday_end: '',
-    sunday_start: '',
-    sunday_end: '',
-    time_interval: '',
-  });
+  public newRoomForm;
 
   constructor(protected formBuilder: FormBuilder, protected addRoomService: AddRoomService) {
+    this.newRoomForm = this.formBuilder.group({
+      room_name: ['', Validators.required],
+      room_capacity: ['', Validators.required],
+      monday_start: ['', Validators.required],
+      monday_end: ['', Validators.required],
+      tuesday_start: ['', Validators.required],
+      tuesday_end: ['', Validators.required],
+      wednesday_start: ['', Validators.required],
+      wednesday_end: ['', Validators.required],
+      thursday_start: ['', Validators.required],
+      thursday_end: ['', Validators.required],
+      friday_start: ['', Validators.required],
+      friday_end: ['', Validators.required],
+      saturday_start: ['', Validators.required],
+      saturday_end: ['', Validators.required],
+      sunday_start: ['', Validators.required],
+      sunday_end: ['', Validators.required],
+      time_interval: ['', Validators.required],
+    });
   }
-
 
   onSubmit(): void {
     
