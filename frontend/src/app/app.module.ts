@@ -8,8 +8,8 @@ import { HttpRequestInterceptor } from './navigation/http-request.interceptor';
 import { JwtModule } from '@auth0/angular-jwt';
 
 /* UI / Material Dependencies */
-import { NgForOf } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule, NgForOf } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -86,6 +86,13 @@ import { DeviationsComponent } from './deviations/deviations.component';
       }
     }),
   ],
+
+  exports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
+  
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: HttpRequestInterceptor,
