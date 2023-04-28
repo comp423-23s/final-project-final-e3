@@ -1,21 +1,27 @@
-<div>
-    <h1>Available Times</h1>
+<div class="time">
+  <h1>Available Times  for Room {{room_name}}</h1>
+  <table name="table" id="table">
+    <colgroup>
+        <col style="width:1000px">
+        <col style="width:1000px">
+    </colgroup>  
 
-    <table name="table" id="table">
-        <colgroup>
-            <col style="width:1000px">
-            <col style="width:1000px">
-        </colgroup>  
+      <thead>
+        <td>Date</td>
+        <td align="center">Times</td>
+      </thead>
 
-          <thead>
-            <td>Date</td>
-          </thead>
-
-        <!-- <tbody>
-          <tr *ngFor="let time of times$ | async">
-            <td>{{ time.Schedule }}</td>
-          </tr>
-        </tbody> -->
-
+      <tbody>
+        <tr *ngFor="let date of times$ | async | keyvalue">
+          <td>{{ date.key }}</td>
+          <ul>
+            <td *ngFor="let time of date.value">
+              <button class="reservation-time" (click)="reserveRoom(time[0], time[1], date.key)">{{ time[0] }}-{{ time[1] }}</button>
+            </td>
+          </ul>
+        </tr>
+      </tbody>
   </table>
 </div>
+
+<!-- <a routerLink = "/myreservations"></a> -->

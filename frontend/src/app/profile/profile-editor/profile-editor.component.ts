@@ -43,7 +43,6 @@ export class ProfileEditorComponent implements OnInit {
 
   ngOnInit(): void {
     let profile = this.profile;
-
     this.profileForm.setValue({
       first_name: profile.first_name,
       last_name: profile.last_name,
