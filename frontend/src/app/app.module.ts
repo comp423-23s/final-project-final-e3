@@ -33,6 +33,7 @@ import { ErrorDialogComponent } from './navigation/error-dialog/error-dialog.com
 import { HomeComponent } from './home/home.component';
 import { GateComponent } from './gate/gate.component';
 import { ProfileEditorComponent } from './profile/profile-editor/profile-editor.component';
+
 import { ReservationsComponent } from './reservations/reservations.component';
 import { TimesComponent } from './times/times.component';
 import { ManagementComponent } from './management/management.component';
