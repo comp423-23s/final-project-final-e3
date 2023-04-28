@@ -77,7 +77,6 @@ with Session(engine) as session:
     from .dev_data import equipments
     to_entity = entities.EquipmentEntity.from_model
     session.add_all([to_entity(model) for model in equipments.models])
-    #session.execute(text(f'ALTER SEQUENCE {entities.RoomEntity.__table__}_id_seq RESTART WITH {len(rooms.models) + 1}'))
     session.commit()
 
 # Add Reservations
@@ -86,13 +85,4 @@ with Session(engine) as session:
     from .dev_data import reservations
     to_entity = entities.ReservationEntity.from_model
     session.add_all([to_entity(model) for model in reservations.models])
-    #session.execute(text(f'ALTER SEQUENCE {entities.ReservationEntity.__table__}_id_seq RESTART WITH {len(reservations.models) + 1}'))
-    session.commit()
-
-# Add Equipment
-with Session(engine) as session:
-    from ..entities import EquipmentEntity
-    from .dev_data import equipment
-    to_entity = entities.EquipmentEntity.from_model
-    session.add_all([to_entity(model) for model in equipment.models])
     session.commit()
