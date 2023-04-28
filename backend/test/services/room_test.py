@@ -37,9 +37,6 @@ room1 = Room(name="A1", max_capacity=3, availability=availability1, deviations=d
 room2 = Room(name="A2", max_capacity=5, availability=availability2, deviations=deviation2)
 
 
-# Mock users
-
-
 @pytest.fixture(autouse=True)
 def setup(test_session: Session):
     room1_entity = RoomEntity.from_model(room1)
@@ -56,7 +53,7 @@ def test_list_room(room: RoomService):
 
 def test_add_room(room: RoomService):
     room_service = room
-    room_service.add(2, "A2", 5)
+    room_service.add(100000002, room2)
     rooms = room_service.list()
     assert len(rooms) == 2
 

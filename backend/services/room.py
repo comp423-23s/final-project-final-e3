@@ -71,7 +71,6 @@ class RoomService:
         room_entity = RoomEntity.from_model(room)
         self._session.add(room_entity)
         self._session.commit()
-        return "room added successfully"
 
 
     def delete(self, user_pid: int, room_name: str) -> None:
