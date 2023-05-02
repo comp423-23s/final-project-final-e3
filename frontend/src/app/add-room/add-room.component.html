@@ -1,13 +1,13 @@
 <div class="add-room-form">
     <form [formGroup] = "newRoomForm" (ngSubmit) = "onSubmit()">
-            <h1>Add Rooms</h1>
+            <h1>Add Resources</h1>
           
             <p>
-                    <label  color = "white">Room Name</label><br>
+                    <label  color = "white">Resources Name</label><br>
                     <input class="input"  id="room_name" type="text" formControlName="room_name" required>
             </p>
             <p>
-                    <label  color = "white">Room Capacity</label><br>
+                    <label  color = "white">Resources Capacity</label><br>
                     <input class="input" id="capacity" type="number" formControlName="room_capacity" required>
             </p>
             <p>

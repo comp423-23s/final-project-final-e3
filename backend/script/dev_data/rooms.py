@@ -27,8 +27,8 @@ deviation1 = {"04/28": ["13:13", "19:19", "0.5"],
 
 deviation2 = {}
 
-room1 = Room(name="A1", max_capacity=3, availability=availability1, deviations=deviation1)
-room2 = Room(name="A2", max_capacity=5, availability=availability2, deviations=deviation2)
+room1 = Room(name="Room-R1", max_capacity=3, availability=availability1, deviations=deviation1)
+room2 = Room(name="Monitor-M1", max_capacity=1, availability=availability2, deviations=deviation2)
 
 models = [
     room1, 

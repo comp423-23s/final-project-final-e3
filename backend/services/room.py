@@ -112,10 +112,10 @@ class RoomService:
         room = room_entity.to_model()
 
         # Does not change room's schedule, but does change rooms deviations list. 
-        room.deviations = deviations
+        room.deviations.update(deviations)
 
         #self._session.query(RoomEntity).filter_by(name=room_name).one().update({RoomEntity.deviations:deviations}, synchronize_session=False)
-        room_entity.deviations = json.dumps(deviations)
+        room_entity.deviations = json.dumps(room.deviations)
         self._session.commit()
         return
     
