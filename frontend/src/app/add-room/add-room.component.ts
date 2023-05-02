@@ -16,7 +16,7 @@ export class AddRoomComponent{
   public static Route: Route = {
     path: 'add-room',
     component: AddRoomComponent, 
-    title: 'add-room',  
+    title: 'Add resources',  
   };
 
   public newRoomForm;
