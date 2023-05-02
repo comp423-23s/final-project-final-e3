@@ -76,7 +76,7 @@ class RoomService:
             self._session.add(room_entity)
             self._session.commit()
         except exc.SQLAlchemyError:
-            print("Duplicate Room Error");
+            raise Exception("The room has already been added.");
         return
 
 

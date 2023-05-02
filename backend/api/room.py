@@ -24,6 +24,8 @@ def add(user_pid: int, room: Room, room_svc: RoomService = Depends()) -> None:
         return room_svc.add(user_pid, room)
     except UserPermissionError:
         raise HTTPException(status_code=400, detail="Not authorized to perform this action")
+    except Exception as e:
+        raise HTTPException(status_code = 422, detail = "The room has already been added")
 
 @api.delete("/{room_name}", tags=["Room"])
 def delete(user_pid: int, room_name: str, room_svc: RoomService = Depends()) -> None:
