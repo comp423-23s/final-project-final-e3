@@ -6,7 +6,7 @@ Our feature enables users to add, delete, and manage reservations of the resourc
 Our feature gives provides different functionality based on the roles of each user. The two primary roles are staff and student. The student role allows access to view available rooms and equipment to reserve, create new reservations, and delete or modify existing reservations. The core philosophy of the student role is that the user only has full access to reservations pertaining to itself, and has access to minimal information about other student roles within the system. On the other hand, the staff role allows the user to have full access to the database. Staff roles are able to add, delete, and manage new rooms and equipment available for the student role to reserve. Moreover, it has access to all reservations in the system and can delete or modify existing reservations for any user on the system. 
 
 ## Implementation Notes
-**Room Model**
+**Resource Model**
 
 | property_name | value_type                               |
 |---------------|------------------------------------------|
@@ -14,6 +14,10 @@ Our feature gives provides different functionality based on the roles of each us
 | max_capacity  | int                                      |
 | availability  | Dict [str : (str, str, str) ]            |
 | deviations    | Dict [str: list [ tuple(str, str), … ] ] |
+
+For rooms, name should be formatted as "Room-R{Room No.}", and for equipment, "{Equipment_Name}-{Name 1st letter}{Equipment No.}"
+This naming format is not enforced. 
+etc. "Room-R1" and "Monitor-M1"
 
 **Availability Example**
 
@@ -34,7 +38,6 @@ availability = {
     "Sunday": ["10:00", "16:00", "1"]
 }
 
-(Equipment model is similar to room model despite the removal of max_capacity)
 
 **Schdule and Deviations**
 

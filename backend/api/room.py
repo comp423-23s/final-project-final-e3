@@ -19,11 +19,15 @@ def edit_deviations(user_pid: int, room_name: str, deviations: Dict[str, List[st
     return room_svc.edit_deviations(user_pid, room_name, deviations)
 
 @api.post("", tags=["Room"])
-def add(user_pid: int, room: Room, room_svc: RoomService = Depends()) -> None:
+def add(user_pid: int, room: Room, room_svc: RoomService = Depends()) -> bool:
     try:
-        return room_svc.add(user_pid, room)
+        room_svc.add(user_pid, room)
+        return True
     except UserPermissionError:
         raise HTTPException(status_code=400, detail="Not authorized to perform this action")
+    except Exception as e:
+        print("Duplicate Room caught")
+        return False
 
 @api.delete("/{room_name}", tags=["Room"])
 def delete(user_pid: int, room_name: str, room_svc: RoomService = Depends()) -> None:

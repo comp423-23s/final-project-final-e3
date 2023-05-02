@@ -59,7 +59,7 @@ export class DeviationsComponent {
   }
 
   private onSuccess() {
-    window.alert(`The time has been changed!`);
+    window.alert(`The time has been changed for ${this.room_name}`);
     this.newDeviationsForm.reset();
   }
 

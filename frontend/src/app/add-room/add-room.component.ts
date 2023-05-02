@@ -72,10 +72,6 @@ export class AddRoomComponent{
   }
 
   private onError(err: any) {
-    if (err.message) {
-      window.alert(err.message);
-    } else {
-      window.alert("Unknown error: " + JSON.stringify(err));
-    }
+    window.alert(`The room has already been added, please double check.`)
   }
 }
