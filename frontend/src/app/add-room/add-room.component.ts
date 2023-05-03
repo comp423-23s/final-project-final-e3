@@ -16,7 +16,7 @@ export class AddRoomComponent{
   public static Route: Route = {
     path: 'add-room',
     component: AddRoomComponent, 
-    title: 'Add resources',  
+    title: 'Add Resources',  
   };
 
   public newRoomForm;
@@ -67,7 +67,7 @@ export class AddRoomComponent{
 
   private onSuccess(room: Room) {
    
-    window.alert(`The room has been added.`);
+    window.alert(`The resource has been added.`);
     this.newRoomForm.reset();
   }
 
