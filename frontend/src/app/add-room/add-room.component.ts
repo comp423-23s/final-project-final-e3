@@ -17,6 +17,7 @@ export class AddRoomComponent{
     path: 'add-room',
     component: AddRoomComponent, 
     title: 'Add Resources',  
+
   };
 
   public newRoomForm;
